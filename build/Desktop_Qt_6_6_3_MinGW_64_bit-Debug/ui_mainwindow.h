@@ -71,6 +71,15 @@ public:
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
     QSpacerItem *horizontalSpacer_6;
+    QWidget *widget_2;
+    QWidget *widget_3;
+    QFrame *frame_4;
+    QVBoxLayout *verticalLayout_5;
+    QLabel *label_5;
+    QFrame *line_3;
+    QLabel *label_4;
+    QFrame *line_4;
+    QFrame *frame_3;
     QWidget *weight_page;
     QVBoxLayout *verticalLayout_2;
     QWidget *weight_header;
@@ -300,12 +309,13 @@ public:
         label = new QLabel(index_page);
         label->setObjectName("label");
         label->setEnabled(false);
-        label->setGeometry(QRect(10, 9, 141, 31));
+        label->setGeometry(QRect(10, 9, 120, 31));
+        label->setMaximumSize(QSize(141, 16777215));
         label->setStyleSheet(QString::fromUtf8("QLabel {\n"
 "     background-color: rgb(85, 127, 204);      \n"
 "      color: white;        \n"
-"     border-radius: 10px;          \n"
-"     padding: 2px;                 \n"
+"     border-radius: 3px;          \n"
+"           \n"
 "}"));
         label->setAlignment(Qt::AlignmentFlag::AlignCenter);
         frame_2 = new QFrame(index_page);
@@ -437,7 +447,67 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_6);
 
+        widget_2 = new QWidget(index_page);
+        widget_2->setObjectName("widget_2");
+        widget_2->setGeometry(QRect(0, 80, 621, 481));
+        widget_2->setStyleSheet(QString::fromUtf8("QWidget {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"}\n"
+""));
+        widget_3 = new QWidget(index_page);
+        widget_3->setObjectName("widget_3");
+        widget_3->setGeometry(QRect(620, 80, 211, 481));
+        widget_3->setStyleSheet(QString::fromUtf8("QWidget{\n"
+"	background-color:rgb(240, 240, 240)\n"
+"}"));
+        frame_4 = new QFrame(widget_3);
+        frame_4->setObjectName("frame_4");
+        frame_4->setGeometry(QRect(0, 0, 211, 321));
+        frame_4->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_4->setFrameShadow(QFrame::Shadow::Raised);
+        verticalLayout_5 = new QVBoxLayout(frame_4);
+        verticalLayout_5->setObjectName("verticalLayout_5");
+        label_5 = new QLabel(frame_4);
+        label_5->setObjectName("label_5");
+        label_5->setMaximumSize(QSize(16777215, 20));
+
+        verticalLayout_5->addWidget(label_5);
+
+        line_3 = new QFrame(frame_4);
+        line_3->setObjectName("line_3");
+        line_3->setFrameShape(QFrame::HLine);
+        line_3->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_5->addWidget(line_3);
+
+        label_4 = new QLabel(frame_4);
+        label_4->setObjectName("label_4");
+
+        verticalLayout_5->addWidget(label_4);
+
+        line_4 = new QFrame(frame_4);
+        line_4->setObjectName("line_4");
+        line_4->setFrameShape(QFrame::HLine);
+        line_4->setFrameShadow(QFrame::Sunken);
+
+        verticalLayout_5->addWidget(line_4);
+
+        frame_3 = new QFrame(index_page);
+        frame_3->setObjectName("frame_3");
+        frame_3->setGeometry(QRect(0, 0, 831, 41));
+        frame_3->setStyleSheet(QString::fromUtf8("QFrame{\n"
+"\n"
+"background:rgb(255, 255, 255);\n"
+"\n"
+"}"));
+        frame_3->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_3->setFrameShadow(QFrame::Shadow::Raised);
         stackedWidget->addWidget(index_page);
+        frame_3->raise();
+        label->raise();
+        frame_2->raise();
+        widget_2->raise();
+        widget_3->raise();
         weight_page = new QWidget();
         weight_page->setObjectName("weight_page");
         weight_page->setEnabled(true);
@@ -728,7 +798,7 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "MainWindow", nullptr));
+        MainWindow->setWindowTitle(QCoreApplication::translate("MainWindow", "\345\233\275\344\272\247\350\210\252\347\251\272\345\272\224\346\200\245\346\225\221\346\217\264\350\243\205\345\244\207\344\275\223\347\263\273\350\257\204\344\274\260\347\263\273\347\273\237", nullptr));
         actCut->setText(QCoreApplication::translate("MainWindow", "\345\211\252\345\210\207", nullptr));
 #if QT_CONFIG(tooltip)
         actCut->setToolTip(QCoreApplication::translate("MainWindow", "\345\211\252\345\210\207", nullptr));
@@ -827,6 +897,8 @@ public:
         pushButton_3->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\346\235\203\351\207\215\346\250\241\346\235\277", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "\345\205\250\351\203\250\345\261\225\345\274\200", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "\345\205\250\351\203\250\346\224\266\347\274\251", nullptr));
+        label_5->setText(QCoreApplication::translate("MainWindow", "\345\255\220\350\212\202\347\202\271\350\257\246\347\273\206\344\277\241\346\201\257\357\274\232", nullptr));
+        label_4->setText(QString());
         zhuan_pushButton->setText(QCoreApplication::translate("MainWindow", "\344\270\223\345\256\266\345\210\206\346\236\220\346\263\225", nullptr));
         cen_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\261\202\346\254\241\345\210\206\346\236\220\346\263\225", nullptr));
         z_load_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\212\240\350\275\275\344\270\223\345\256\266\346\235\203\351\207\215\350\241\250", nullptr));
