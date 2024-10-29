@@ -73,3 +73,23 @@ void MainWindow::on_pushButton_3_clicked()
 
 }
 
+
+void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
+{
+    if (item->text(0) == "权重体系设计") {
+        ui->stackedWidget->setCurrentIndex(1);
+    }
+}
+
+
+void MainWindow::on_zhuan_pushButton_clicked()
+{
+    ui->weight_stack->setCurrentIndex(0);
+}
+
+
+void MainWindow::on_cen_pushButton_clicked()
+{
+    ui->weight_stack->setCurrentIndex(1);
+}
+

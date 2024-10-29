@@ -8,7 +8,7 @@
 #include <QSpinBox>
 #include <QTreeWidget>
 #include <QStackedWidget>
-
+#include <QTreeWidgetItem>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -26,7 +26,13 @@ public:
 
 private slots:
     void on_pushButton_3_clicked();
+
     void onTreeWidgetItemClicked(QTreeWidgetItem *item, int column);
+
+
+    void on_zhuan_pushButton_clicked();
+
+    void on_cen_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
