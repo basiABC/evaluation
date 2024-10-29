@@ -32,7 +32,7 @@
       <x>0</x>
       <y>0</y>
       <width>1041</width>
-      <height>651</height>
+      <height>561</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -309,7 +309,7 @@ QTreeView::branch:!has-children {
       </layout>
      </item>
      <item row="0" column="1">
-      <widget class="QStackedWidget" name="stackedWidget_3">
+      <widget class="QStackedWidget" name="stackedWidget_2">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
@@ -334,7 +334,7 @@ QTreeView::branch:!has-children {
          </property>
         </widget>
        </widget>
-       <widget class="QWidget" name="stackedWidget_3Page1">
+       <widget class="QWidget" name="weight_page">
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="spacing">
           <number>0</number>
@@ -352,22 +352,21 @@ QTreeView::branch:!has-children {
           <number>0</number>
          </property>
          <item>
-          <widget class="QWidget" name="header1" native="true">
+          <widget class="QWidget" name="weight_header" native="true">
            <layout class="QHBoxLayout" name="horizontalLayout_2">
-            <item>
-             <widget class="QPushButton" name="pushButton">
+            <property name="spacing">
+             <number>7</number>
+            </property>
+            <item alignment="Qt::AlignmentFlag::AlignLeft">
+             <widget class="QPushButton" name="zhuan_pushButton">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="styleSheet">
-               <string notr="true">QPushButton:pressed {
-    background-color: #3e8e41;  /* 更深的绿色背景 */
-    border: 2px solid #3e8e41;  /* 更深的绿色边框 */
-    padding-left: 12px;         /* 模拟按下的效果 */
-    padding-top: 12px;          /* 模拟按下的效果 */
-}
-
-QPushButton:focus {
-    outline: none;              /* 移除默认的焦点框 */
-    border: 2px solid #FF5722;  /* 橙色边框，表示获得焦点 */
-}</string>
+               <string notr="true"/>
               </property>
               <property name="text">
                <string>专家分析法</string>
@@ -377,8 +376,8 @@ QPushButton:focus {
               </property>
              </widget>
             </item>
-            <item>
-             <widget class="QPushButton" name="pushButton_2">
+            <item alignment="Qt::AlignmentFlag::AlignLeft">
+             <widget class="QPushButton" name="cen_pushButton">
               <property name="text">
                <string>层次分析法</string>
               </property>
@@ -387,15 +386,28 @@ QPushButton:focus {
               </property>
              </widget>
             </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Orientation::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
            </layout>
           </widget>
          </item>
          <item>
-          <widget class="QStackedWidget" name="stackedWidget">
+          <widget class="QStackedWidget" name="weight_stack">
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
-           <widget class="QWidget" name="page">
+           <widget class="QWidget" name="zhuan_page">
             <layout class="QVBoxLayout" name="verticalLayout_3">
              <property name="spacing">
               <number>0</number>
@@ -413,7 +425,7 @@ QPushButton:focus {
               <number>0</number>
              </property>
              <item>
-              <widget class="QWidget" name="header2" native="true">
+              <widget class="QWidget" name="zhuan_header" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
                  <horstretch>0</horstretch>
@@ -453,7 +465,7 @@ QPushButton:focus {
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_3">
+                 <widget class="QPushButton" name="z_load_pushButton">
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(19, 200, 255);</string>
                   </property>
@@ -466,7 +478,7 @@ QPushButton:focus {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_4">
+                 <widget class="QPushButton" name="z_gui_pushButton">
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(19, 200, 255);</string>
                   </property>
@@ -479,7 +491,7 @@ QPushButton:focus {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_5">
+                 <widget class="QPushButton" name="z_sheng_pushButton">
                   <property name="styleSheet">
                    <string notr="true">background-color: rgb(19, 200, 255);</string>
                   </property>
@@ -492,7 +504,7 @@ QPushButton:focus {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QCheckBox" name="checkBox">
+                 <widget class="QCheckBox" name="z_checkBox">
                   <property name="font">
                    <font>
                     <bold>true</bold>
@@ -504,7 +516,7 @@ QPushButton:focus {
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_6">
+                 <widget class="QPushButton" name="z_save_pushButton">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -551,7 +563,7 @@ QPushButton:focus {
               </widget>
              </item>
              <item>
-              <widget class="QWidget" name="widget_2" native="true">
+              <widget class="QWidget" name="zhuan_widget" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
                  <horstretch>0</horstretch>
@@ -562,7 +574,176 @@ QPushButton:focus {
              </item>
             </layout>
            </widget>
-           <widget class="QWidget" name="page_2"/>
+           <widget class="QWidget" name="cen_page">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <layout class="QVBoxLayout" name="verticalLayout_4">
+             <property name="spacing">
+              <number>0</number>
+             </property>
+             <property name="leftMargin">
+              <number>0</number>
+             </property>
+             <property name="topMargin">
+              <number>0</number>
+             </property>
+             <property name="rightMargin">
+              <number>0</number>
+             </property>
+             <property name="bottomMargin">
+              <number>0</number>
+             </property>
+             <item alignment="Qt::AlignmentFlag::AlignTop">
+              <widget class="QWidget" name="cen_header" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true"/>
+               </property>
+               <layout class="QHBoxLayout" name="horizontalLayout_4">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <spacer name="horizontalSpacer_4">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Policy::Maximum</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>20</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="c_load_pushButton">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(19, 200, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>加载层次权重表</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::DocumentPageSetup"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="c_gui_pushButton">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(19, 200, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>归一化处理</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::HelpAbout"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="c_sheng_pushButton">
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(19, 200, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>生成综合权重表</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::AddressBookNew"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QCheckBox" name="c_checkBox">
+                  <property name="font">
+                   <font>
+                    <bold>true</bold>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>设为默认权重体系</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="c_save_pushButton">
+                  <property name="sizePolicy">
+                   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+                    <horstretch>0</horstretch>
+                    <verstretch>0</verstretch>
+                   </sizepolicy>
+                  </property>
+                  <property name="minimumSize">
+                   <size>
+                    <width>80</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="maximumSize">
+                   <size>
+                    <width>80</width>
+                    <height>16777215</height>
+                   </size>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true">background-color: rgb(19, 200, 255);</string>
+                  </property>
+                  <property name="text">
+                   <string>保存</string>
+                  </property>
+                  <property name="icon">
+                   <iconset theme="QIcon::ThemeIcon::DocumentSave"/>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_5">
+                  <property name="orientation">
+                   <enum>Qt::Orientation::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="cen_widget" native="true">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Expanding">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
           </widget>
          </item>
         </layout>
@@ -579,7 +760,7 @@ QPushButton:focus {
      <x>0</x>
      <y>0</y>
      <width>1036</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">

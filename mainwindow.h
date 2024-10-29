@@ -6,6 +6,8 @@
 #include <QProgressBar>
 #include <QFontComboBox>
 #include <QSpinBox>
+#include <QTreeWidgetItem>
+#include <QStackedWidget>
 
 
 QT_BEGIN_NAMESPACE
@@ -25,6 +27,13 @@ public:
 
 private slots:
     void on_pushButton_3_clicked();
+
+    void on_treeWidget_itemClicked(QTreeWidgetItem *item, int column);
+
+
+    void on_zhuan_pushButton_clicked();
+
+    void on_cen_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
