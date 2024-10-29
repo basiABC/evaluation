@@ -54,11 +54,11 @@ void MainWindow::onTreeWidgetItemClicked(QTreeWidgetItem *item, int column)
 
     // 根据点击的 treeWidget 项切换 stackedWidget 页面
     if (itemText == "指标体系设计") {
-        ui->stackedWidget_3->setCurrentWidget(ui->page_3);
+        ui->stackedWidget->setCurrentWidget(ui->index_page);
     } else if (itemText == "权重体系设计") {
-        ui->stackedWidget_3->setCurrentWidget(ui->stackedWidget_3Page1);
+        ui->stackedWidget->setCurrentWidget(ui->weight_page);
     } else if (itemText == "算法体系设计") {
-        ui->stackedWidget_3->setCurrentWidget(ui->page_4);
+        ui->stackedWidget->setCurrentWidget(ui->algorithm_page);
     }
 }
 
@@ -74,12 +74,7 @@ void MainWindow::on_pushButton_3_clicked()
 }
 
 
-void MainWindow::on_treeWidget_itemClicked(QTreeWidgetItem *item, int column)
-{
-    if (item->text(0) == "权重体系设计") {
-        ui->stackedWidget->setCurrentIndex(1);
-    }
-}
+
 
 
 void MainWindow::on_zhuan_pushButton_clicked()

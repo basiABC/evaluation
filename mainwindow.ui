@@ -319,7 +319,7 @@ QTreeView::branch:!has-children {
        <property name="styleSheet">
         <string notr="true">background-color: rgb(231, 231, 231);</string>
        </property>
-       <widget class="QWidget" name="page_3">
+       <widget class="QWidget" name="index_page">
         <widget class="QPushButton" name="pushButton_7">
          <property name="geometry">
           <rect>
@@ -357,7 +357,7 @@ QTreeView::branch:!has-children {
             <property name="spacing">
              <number>7</number>
             </property>
-            <item alignment="Qt::AlignmentFlag::AlignLeft">
+            <item alignment="">
              <widget class="QPushButton" name="zhuan_pushButton">
               <property name="sizePolicy">
                <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
@@ -376,7 +376,7 @@ QTreeView::branch:!has-children {
               </property>
              </widget>
             </item>
-            <item alignment="Qt::AlignmentFlag::AlignLeft">
+            <item alignment="">
              <widget class="QPushButton" name="cen_pushButton">
               <property name="text">
                <string>层次分析法</string>
@@ -594,7 +594,7 @@ QTreeView::branch:!has-children {
              <property name="bottomMargin">
               <number>0</number>
              </property>
-             <item alignment="Qt::AlignmentFlag::AlignTop">
+             <item>
               <widget class="QWidget" name="cen_header" native="true">
                <property name="sizePolicy">
                 <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
@@ -748,7 +748,7 @@ QTreeView::branch:!has-children {
          </item>
         </layout>
        </widget>
-       <widget class="QWidget" name="page_4"/>
+       <widget class="QWidget" name="algorithm_page"/>
       </widget>
      </item>
     </layout>
@@ -760,7 +760,7 @@ QTreeView::branch:!has-children {
      <x>0</x>
      <y>0</y>
      <width>1036</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
    <property name="styleSheet">
