@@ -19,11 +19,13 @@
 #include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
+#include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSpacerItem>
+#include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextEdit>
@@ -54,7 +56,21 @@ public:
     QTreeWidget *treeWidget;
     QStackedWidget *stackedWidget;
     QWidget *index_page;
-    QPushButton *pushButton_7;
+    QLabel *label;
+    QFrame *frame_2;
+    QHBoxLayout *horizontalLayout;
+    QLabel *label_2;
+    QSpinBox *spinBox;
+    QLabel *label_3;
+    QSpinBox *spinBox_2;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
+    QFrame *line;
+    QPushButton *pushButton_3;
+    QFrame *line_2;
+    QPushButton *pushButton_4;
+    QPushButton *pushButton_5;
+    QSpacerItem *horizontalSpacer_6;
     QWidget *weight_page;
     QVBoxLayout *verticalLayout_2;
     QWidget *weight_header;
@@ -153,7 +169,7 @@ public:
         centralwidget->setSizePolicy(sizePolicy1);
         widget = new QWidget(centralwidget);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 0, 1041, 561));
+        widget->setGeometry(QRect(0, 0, 1041, 591));
         sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
         widget->setSizePolicy(sizePolicy);
         formLayout = new QFormLayout(widget);
@@ -280,12 +296,151 @@ public:
         stackedWidget->setStyleSheet(QString::fromUtf8("background-color: rgb(231, 231, 231);"));
         index_page = new QWidget();
         index_page->setObjectName("index_page");
-        pushButton_7 = new QPushButton(index_page);
-        pushButton_7->setObjectName("pushButton_7");
-        pushButton_7->setGeometry(QRect(10, 10, 141, 31));
+        index_page->setEnabled(true);
+        label = new QLabel(index_page);
+        label->setObjectName("label");
+        label->setEnabled(false);
+        label->setGeometry(QRect(10, 9, 141, 31));
+        label->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"     background-color: rgb(85, 127, 204);      \n"
+"      color: white;        \n"
+"     border-radius: 10px;          \n"
+"     padding: 2px;                 \n"
+"}"));
+        label->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        frame_2 = new QFrame(index_page);
+        frame_2->setObjectName("frame_2");
+        frame_2->setGeometry(QRect(0, 40, 841, 41));
+        frame_2->setStyleSheet(QString::fromUtf8("QFrame{\n"
+"\n"
+"background:rgb(187, 210, 243);\n"
+"\n"
+"}"));
+        frame_2->setFrameShape(QFrame::Shape::StyledPanel);
+        frame_2->setFrameShadow(QFrame::Shadow::Raised);
+        horizontalLayout = new QHBoxLayout(frame_2);
+        horizontalLayout->setObjectName("horizontalLayout");
+        horizontalLayout->setContentsMargins(7, 7, 7, 7);
+        label_2 = new QLabel(frame_2);
+        label_2->setObjectName("label_2");
+        label_2->setMaximumSize(QSize(35, 16777215));
+        label_2->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(183, 195, 220,1);\n"
+" \n"
+"}"));
+
+        horizontalLayout->addWidget(label_2);
+
+        spinBox = new QSpinBox(frame_2);
+        spinBox->setObjectName("spinBox");
+        spinBox->setMinimumSize(QSize(0, 25));
+        spinBox->setMaximumSize(QSize(35, 16777215));
+
+        horizontalLayout->addWidget(spinBox);
+
+        label_3 = new QLabel(frame_2);
+        label_3->setObjectName("label_3");
+        label_3->setStyleSheet(QString::fromUtf8("QLabel {\n"
+"    background-color: rgb(183, 195, 220,1);\n"
+" \n"
+"}"));
+        label_3->setAlignment(Qt::AlignmentFlag::AlignCenter);
+
+        horizontalLayout->addWidget(label_3);
+
+        spinBox_2 = new QSpinBox(frame_2);
+        spinBox_2->setObjectName("spinBox_2");
+        spinBox_2->setMinimumSize(QSize(0, 25));
+        spinBox_2->setMaximumSize(QSize(35, 16777215));
+
+        horizontalLayout->addWidget(spinBox_2);
+
+        pushButton = new QPushButton(frame_2);
+        pushButton->setObjectName("pushButton");
+        pushButton->setMinimumSize(QSize(80, 25));
+        pushButton->setMaximumSize(QSize(80, 16777215));
+        pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"}\n"
+""));
+
+        horizontalLayout->addWidget(pushButton);
+
+        pushButton_2 = new QPushButton(frame_2);
+        pushButton_2->setObjectName("pushButton_2");
+        pushButton_2->setMinimumSize(QSize(80, 25));
+        pushButton_2->setMaximumSize(QSize(80, 16777215));
+        pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"}\n"
+""));
+
+        horizontalLayout->addWidget(pushButton_2);
+
+        line = new QFrame(frame_2);
+        line->setObjectName("line");
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout->addWidget(line);
+
+        pushButton_3 = new QPushButton(frame_2);
+        pushButton_3->setObjectName("pushButton_3");
+        pushButton_3->setMinimumSize(QSize(100, 25));
+        pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"}\n"
+""));
+
+        horizontalLayout->addWidget(pushButton_3);
+
+        line_2 = new QFrame(frame_2);
+        line_2->setObjectName("line_2");
+        line_2->setFrameShape(QFrame::VLine);
+        line_2->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout->addWidget(line_2);
+
+        pushButton_4 = new QPushButton(frame_2);
+        pushButton_4->setObjectName("pushButton_4");
+        pushButton_4->setMinimumSize(QSize(80, 25));
+        pushButton_4->setMaximumSize(QSize(80, 16777215));
+        pushButton_4->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"}\n"
+""));
+
+        horizontalLayout->addWidget(pushButton_4);
+
+        pushButton_5 = new QPushButton(frame_2);
+        pushButton_5->setObjectName("pushButton_5");
+        pushButton_5->setMinimumSize(QSize(80, 25));
+        pushButton_5->setMaximumSize(QSize(80, 16777215));
+        pushButton_5->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"}\n"
+""));
+
+        horizontalLayout->addWidget(pushButton_5);
+
+        horizontalSpacer_6 = new QSpacerItem(80, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+
+        horizontalLayout->addItem(horizontalSpacer_6);
+
         stackedWidget->addWidget(index_page);
         weight_page = new QWidget();
         weight_page->setObjectName("weight_page");
+        weight_page->setEnabled(true);
         verticalLayout_2 = new QVBoxLayout(weight_page);
         verticalLayout_2->setSpacing(0);
         verticalLayout_2->setObjectName("verticalLayout_2");
@@ -564,6 +719,7 @@ public:
 
         retranslateUi(MainWindow);
 
+        stackedWidget->setCurrentIndex(0);
         weight_stack->setCurrentIndex(1);
 
 
@@ -663,7 +819,14 @@ public:
         ___qtreewidgetitem19->setText(0, QCoreApplication::translate("MainWindow", "\347\263\273\347\273\237\351\205\215\347\275\256", nullptr));
         treeWidget->setSortingEnabled(__sortingEnabled);
 
-        pushButton_7->setText(QCoreApplication::translate("MainWindow", "\346\225\210\350\203\275\346\214\207\346\240\207\344\275\223\347\263\273\350\256\276\350\256\241", nullptr));
+        label->setText(QCoreApplication::translate("MainWindow", "\346\225\210\350\203\275\346\214\207\346\240\207\344\275\223\347\263\273\350\256\276\350\256\241", nullptr));
+        label_2->setText(QCoreApplication::translate("MainWindow", "\345\261\202\346\225\260\357\274\232", nullptr));
+        label_3->setText(QCoreApplication::translate("MainWindow", "\346\257\217\345\261\202\345\271\263\345\235\207\350\212\202\347\202\271\346\225\260\357\274\232", nullptr));
+        pushButton->setText(QCoreApplication::translate("MainWindow", "\345\277\253\351\200\237\345\210\233\345\273\272", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("MainWindow", "\345\244\215\345\210\266\345\210\233\345\273\272", nullptr));
+        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\346\235\203\351\207\215\346\250\241\346\235\277", nullptr));
+        pushButton_4->setText(QCoreApplication::translate("MainWindow", "\345\205\250\351\203\250\345\261\225\345\274\200", nullptr));
+        pushButton_5->setText(QCoreApplication::translate("MainWindow", "\345\205\250\351\203\250\346\224\266\347\274\251", nullptr));
         zhuan_pushButton->setText(QCoreApplication::translate("MainWindow", "\344\270\223\345\256\266\345\210\206\346\236\220\346\263\225", nullptr));
         cen_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\261\202\346\254\241\345\210\206\346\236\220\346\263\225", nullptr));
         z_load_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\212\240\350\275\275\344\270\223\345\256\266\346\235\203\351\207\215\350\241\250", nullptr));
