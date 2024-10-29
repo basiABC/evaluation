@@ -10,9 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     iniUI();
-
+    connect(ui->treeWidget, &QTreeWidget::itemClicked, this, &MainWindow::onTreeWidgetItemClicked);
 }
 
 
@@ -45,6 +46,20 @@ void MainWindow::iniUI(){
     ui->toolBar->addWidget(comboFont);
 
     //setCentralWidget(ui->txtEdit);
+}
+
+void MainWindow::onTreeWidgetItemClicked(QTreeWidgetItem *item, int column)
+{
+    QString itemText = item->text(column);
+
+    // 根据点击的 treeWidget 项切换 stackedWidget 页面
+    if (itemText == "指标体系设计") {
+        ui->stackedWidget_3->setCurrentWidget(ui->page_3);
+    } else if (itemText == "权重体系设计") {
+        ui->stackedWidget_3->setCurrentWidget(ui->stackedWidget_3Page1);
+    } else if (itemText == "算法体系设计") {
+        ui->stackedWidget_3->setCurrentWidget(ui->page_4);
+    }
 }
 
 MainWindow::~MainWindow()
