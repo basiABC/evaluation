@@ -309,7 +309,7 @@ QTreeView::branch:!has-children {
       </layout>
      </item>
      <item row="0" column="1">
-      <widget class="QStackedWidget" name="stackedWidget_2">
+      <widget class="QStackedWidget" name="stackedWidget">
        <property name="sizePolicy">
         <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
          <horstretch>0</horstretch>
