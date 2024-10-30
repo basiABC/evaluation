@@ -772,6 +772,12 @@ background:rgb(255, 255, 255);
               <property name="spacing">
                <number>7</number>
               </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
               <item>
                <widget class="QPushButton" name="zhuan_pushButton">
                 <property name="sizePolicy">
@@ -799,13 +805,19 @@ background:rgb(255, 255, 255);
                 </property>
                 <property name="icon">
                  <iconset theme="QIcon::ThemeIcon::ContactNew">
-                  <normalon>:/paste.png</normalon>
+                  <normalon>:/expert.png</normalon>
                  </iconset>
                 </property>
                </widget>
               </item>
               <item>
                <widget class="QPushButton" name="cen_pushButton">
+                <property name="minimumSize">
+                 <size>
+                  <width>0</width>
+                  <height>30</height>
+                 </size>
+                </property>
                 <property name="styleSheet">
                  <string notr="true">QPushButton {
     qproperty-iconSize: 24px 24px; /* 图标大小 */
@@ -816,7 +828,9 @@ background:rgb(255, 255, 255);
                  <string>层次分析法</string>
                 </property>
                 <property name="icon">
-                 <iconset theme="QIcon::ThemeIcon::FormatJustifyCenter"/>
+                 <iconset theme="QIcon::ThemeIcon::FormatJustifyCenter">
+                  <normalon>:/paste.png</normalon>
+                 </iconset>
                 </property>
                </widget>
               </item>
@@ -1373,6 +1387,100 @@ QPushButton {
                  <property name="styleSheet">
                   <string notr="true">background-color: rgb(255, 255, 255);</string>
                  </property>
+                 <layout class="QHBoxLayout" name="horizontalLayout_4">
+                  <property name="spacing">
+                   <number>0</number>
+                  </property>
+                  <property name="leftMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="topMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="rightMargin">
+                   <number>0</number>
+                  </property>
+                  <property name="bottomMargin">
+                   <number>0</number>
+                  </property>
+                  <item>
+                   <widget class="QWidget" name="cen_tree_display" native="true">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>500</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QStackedWidget" name="weught_display_st">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <widget class="QWidget" name="page"/>
+                    <widget class="QWidget" name="page_2">
+                     <layout class="QHBoxLayout" name="horizontalLayout_8">
+                      <property name="spacing">
+                       <number>0</number>
+                      </property>
+                      <property name="leftMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="topMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="rightMargin">
+                       <number>0</number>
+                      </property>
+                      <property name="bottomMargin">
+                       <number>0</number>
+                      </property>
+                      <item>
+                       <widget class="QTreeWidget" name="treeWidget_2">
+                        <column>
+                         <property name="text">
+                          <string notr="true">1</string>
+                         </property>
+                        </column>
+                       </widget>
+                      </item>
+                     </layout>
+                    </widget>
+                   </widget>
+                  </item>
+                  <item alignment="Qt::AlignmentFlag::AlignRight">
+                   <widget class="QFrame" name="side_z_c">
+                    <property name="sizePolicy">
+                     <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+                      <horstretch>0</horstretch>
+                      <verstretch>0</verstretch>
+                     </sizepolicy>
+                    </property>
+                    <property name="minimumSize">
+                     <size>
+                      <width>30</width>
+                      <height>0</height>
+                     </size>
+                    </property>
+                    <property name="frameShape">
+                     <enum>QFrame::Shape::StyledPanel</enum>
+                    </property>
+                    <property name="frameShadow">
+                     <enum>QFrame::Shadow::Raised</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
                 </widget>
                </item>
               </layout>

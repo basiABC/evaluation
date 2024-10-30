@@ -6,5 +6,6 @@
         <file>cut.png</file>
         <file>paste.png</file>
         <file>save.png</file>
+        <file>expert.png</file>
     </qresource>
 </RCC>
