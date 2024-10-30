@@ -14,6 +14,7 @@
 #include <QtGui/QIcon>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QCheckBox>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QFormLayout>
 #include <QtWidgets/QFrame>
 #include <QtWidgets/QGridLayout>
@@ -24,12 +25,16 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QRadioButton>
+#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QSpacerItem>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QStackedWidget>
 #include <QtWidgets/QStatusBar>
+#include <QtWidgets/QTextBrowser>
 #include <QtWidgets/QTextEdit>
 #include <QtWidgets/QToolBar>
+#include <QtWidgets/QTreeView>
 #include <QtWidgets/QTreeWidget>
 #include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
@@ -47,6 +52,7 @@ public:
     QAction *actFontUnder;
     QAction *actFont;
     QWidget *centralwidget;
+    QVBoxLayout *verticalLayout_6;
     QWidget *widget;
     QFormLayout *formLayout;
     QVBoxLayout *verticalLayout;
@@ -90,29 +96,93 @@ public:
     QStackedWidget *weight_stack;
     QWidget *zhuan_page;
     QVBoxLayout *verticalLayout_3;
-    QWidget *zhuan_header;
+    QFrame *zhuan_header;
     QHBoxLayout *horizontalLayout_3;
-    QSpacerItem *horizontalSpacer_3;
+    QHBoxLayout *horizontalLayout_6;
     QPushButton *z_load_pushButton;
     QPushButton *z_gui_pushButton;
+    QFrame *line_8;
     QPushButton *z_sheng_pushButton;
     QCheckBox *z_checkBox;
+    QFrame *line_7;
     QPushButton *z_save_pushButton;
     QSpacerItem *horizontalSpacer;
     QWidget *zhuan_widget;
     QWidget *cen_page;
     QVBoxLayout *verticalLayout_4;
-    QWidget *cen_header;
-    QHBoxLayout *horizontalLayout_4;
-    QSpacerItem *horizontalSpacer_4;
+    QFrame *cen_header;
+    QHBoxLayout *horizontalLayout_5;
+    QHBoxLayout *horizontalLayout_7;
     QPushButton *c_load_pushButton;
     QPushButton *c_gui_pushButton;
-    QPushButton *c_sheng_pushButton;
+    QFrame *line_9;
+    QPushButton *c_sheng_pushButton_2;
     QCheckBox *c_checkBox;
+    QFrame *line_10;
     QPushButton *c_save_pushButton;
-    QSpacerItem *horizontalSpacer_5;
+    QSpacerItem *horizontalSpacer_3;
     QWidget *cen_widget;
+    QHBoxLayout *horizontalLayout_4;
+    QWidget *cen_tree_display;
+    QStackedWidget *weught_display_st;
+    QWidget *page;
+    QWidget *page_2;
+    QHBoxLayout *horizontalLayout_8;
+    QTreeWidget *treeWidget_2;
+    QFrame *side_z_c;
     QWidget *algorithm_page;
+    QLabel *label_6;
+    QTextBrowser *textBrowser;
+    QWidget *gridLayoutWidget;
+    QGridLayout *gridLayout_2;
+    QPushButton *pushButton_10;
+    QPushButton *pushButton_16;
+    QPushButton *pushButton_18;
+    QPushButton *pushButton_11;
+    QPushButton *pushButton_21;
+    QPushButton *pushButton_24;
+    QPushButton *pushButton_12;
+    QPushButton *pushButton_9;
+    QPushButton *pushButton_17;
+    QPushButton *pushButton_30;
+    QPushButton *pushButton_20;
+    QPushButton *pushButton_25;
+    QPushButton *pushButton_22;
+    QPushButton *pushButton_7;
+    QPushButton *pushButton_13;
+    QPushButton *pushButton_14;
+    QPushButton *pushButton_23;
+    QPushButton *pushButton_29;
+    QPushButton *pushButton_15;
+    QPushButton *pushButton_26;
+    QPushButton *pushButton_27;
+    QPushButton *pushButton_8;
+    QPushButton *pushButton_28;
+    QPushButton *pushButton_19;
+    QPushButton *pushButton_6;
+    QLabel *label_9;
+    QComboBox *comboBox;
+    QWidget *gridLayoutWidget_2;
+    QGridLayout *gridLayout_3;
+    QPushButton *pushButton_34;
+    QPushButton *pushButton_31;
+    QPushButton *pushButton_33;
+    QPushButton *pushButton_32;
+    QPushButton *pushButton_35;
+    QPushButton *pushButton_36;
+    QPushButton *pushButton_37;
+    QPushButton *pushButton_38;
+    QPushButton *pushButton_39;
+    QScrollArea *scrollArea;
+    QWidget *scrollAreaWidgetContents;
+    QTreeView *treeView;
+    QWidget *gridLayoutWidget_3;
+    QGridLayout *gridLayout_4;
+    QLabel *label_8;
+    QRadioButton *radioButton_2;
+    QRadioButton *radioButton;
+    QRadioButton *radioButton_3;
+    QLabel *label_7;
     QMenuBar *menubar;
     QMenu *menu;
     QMenu *menu_2;
@@ -125,12 +195,14 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(1036, 633);
+        MainWindow->resize(1036, 664);
         QSizePolicy sizePolicy(QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(MainWindow->sizePolicy().hasHeightForWidth());
         MainWindow->setSizePolicy(sizePolicy);
+        MainWindow->setMinimumSize(QSize(1036, 664));
+        MainWindow->setMaximumSize(QSize(1036, 664));
         actCut = new QAction(MainWindow);
         actCut->setObjectName("actCut");
         QIcon icon(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::EditCut")));
@@ -171,14 +243,14 @@ public:
         actFont->setMenuRole(QAction::MenuRole::NoRole);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
-        QSizePolicy sizePolicy1(QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Maximum);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
-        centralwidget->setSizePolicy(sizePolicy1);
+        sizePolicy.setHeightForWidth(centralwidget->sizePolicy().hasHeightForWidth());
+        centralwidget->setSizePolicy(sizePolicy);
+        verticalLayout_6 = new QVBoxLayout(centralwidget);
+        verticalLayout_6->setSpacing(0);
+        verticalLayout_6->setObjectName("verticalLayout_6");
+        verticalLayout_6->setContentsMargins(0, 0, 0, 0);
         widget = new QWidget(centralwidget);
         widget->setObjectName("widget");
-        widget->setGeometry(QRect(0, 0, 1041, 591));
         sizePolicy.setHeightForWidth(widget->sizePolicy().hasHeightForWidth());
         widget->setSizePolicy(sizePolicy);
         formLayout = new QFormLayout(widget);
@@ -191,6 +263,9 @@ public:
         verticalLayout->setObjectName("verticalLayout");
         frame = new QFrame(widget);
         frame->setObjectName("frame");
+        QSizePolicy sizePolicy1(QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Maximum);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(frame->sizePolicy().hasHeightForWidth());
         frame->setSizePolicy(sizePolicy1);
         frame->setMinimumSize(QSize(200, 40));
@@ -449,14 +524,14 @@ public:
 
         widget_2 = new QWidget(index_page);
         widget_2->setObjectName("widget_2");
-        widget_2->setGeometry(QRect(0, 80, 621, 481));
+        widget_2->setGeometry(QRect(0, 80, 621, 511));
         widget_2->setStyleSheet(QString::fromUtf8("QWidget {\n"
 "    background-color: rgb(255, 255, 255);\n"
 "}\n"
 ""));
         widget_3 = new QWidget(index_page);
         widget_3->setObjectName("widget_3");
-        widget_3->setGeometry(QRect(620, 80, 211, 481));
+        widget_3->setGeometry(QRect(620, 80, 211, 511));
         widget_3->setStyleSheet(QString::fromUtf8("QWidget{\n"
 "	background-color:rgb(240, 240, 240)\n"
 "}"));
@@ -517,9 +592,14 @@ public:
         verticalLayout_2->setContentsMargins(0, 0, 0, 0);
         weight_header = new QWidget(weight_page);
         weight_header->setObjectName("weight_header");
+        weight_header->setStyleSheet(QString::fromUtf8("QWidget {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"}\n"
+""));
         horizontalLayout_2 = new QHBoxLayout(weight_header);
         horizontalLayout_2->setSpacing(7);
         horizontalLayout_2->setObjectName("horizontalLayout_2");
+        horizontalLayout_2->setContentsMargins(-1, 0, -1, 0);
         zhuan_pushButton = new QPushButton(weight_header);
         zhuan_pushButton->setObjectName("zhuan_pushButton");
         QSizePolicy sizePolicy3(QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Fixed);
@@ -527,15 +607,38 @@ public:
         sizePolicy3.setVerticalStretch(0);
         sizePolicy3.setHeightForWidth(zhuan_pushButton->sizePolicy().hasHeightForWidth());
         zhuan_pushButton->setSizePolicy(sizePolicy3);
-        zhuan_pushButton->setStyleSheet(QString::fromUtf8(""));
-        QIcon icon7(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::UserAvailable")));
+        zhuan_pushButton->setMinimumSize(QSize(0, 30));
+        zhuan_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"            text-align: left;\n"
+"            padding-left: 10px;\n"
+"            padding-right: 10px;\n"
+"            icon-size: 16px;\n"
+"}"));
+        QIcon icon7;
+        QString iconThemeName = QString::fromUtf8("QIcon::ThemeIcon::ContactNew");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon7 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon7.addFile(QString::fromUtf8(":/expert.png"), QSize(), QIcon::Normal, QIcon::On);
+        }
         zhuan_pushButton->setIcon(icon7);
 
         horizontalLayout_2->addWidget(zhuan_pushButton);
 
         cen_pushButton = new QPushButton(weight_header);
         cen_pushButton->setObjectName("cen_pushButton");
-        QIcon icon8(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::FormatJustifyCenter")));
+        cen_pushButton->setMinimumSize(QSize(0, 30));
+        cen_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    qproperty-iconSize: 24px 24px; /* \345\233\276\346\240\207\345\244\247\345\260\217 */\n"
+"    icon-position: left; /* \345\217\257\350\203\275\351\234\200\350\246\201\350\207\252\345\256\232\344\271\211\346\240\267\345\274\217\350\241\250\346\210\226\350\260\203\346\225\264\345\270\203\345\261\200 */\n"
+"}"));
+        QIcon icon8;
+        iconThemeName = QString::fromUtf8("QIcon::ThemeIcon::FormatJustifyCenter");
+        if (QIcon::hasThemeIcon(iconThemeName)) {
+            icon8 = QIcon::fromTheme(iconThemeName);
+        } else {
+            icon8.addFile(QString::fromUtf8(":/paste.png"), QSize(), QIcon::Normal, QIcon::On);
+        }
         cen_pushButton->setIcon(icon8);
 
         horizontalLayout_2->addWidget(cen_pushButton);
@@ -555,41 +658,91 @@ public:
         verticalLayout_3->setSpacing(0);
         verticalLayout_3->setObjectName("verticalLayout_3");
         verticalLayout_3->setContentsMargins(0, 0, 0, 0);
-        zhuan_header = new QWidget(zhuan_page);
+        zhuan_header = new QFrame(zhuan_page);
         zhuan_header->setObjectName("zhuan_header");
-        sizePolicy2.setHeightForWidth(zhuan_header->sizePolicy().hasHeightForWidth());
-        zhuan_header->setSizePolicy(sizePolicy2);
-        zhuan_header->setStyleSheet(QString::fromUtf8(""));
+        sizePolicy.setHeightForWidth(zhuan_header->sizePolicy().hasHeightForWidth());
+        zhuan_header->setSizePolicy(sizePolicy);
+        zhuan_header->setMinimumSize(QSize(0, 20));
+        zhuan_header->setMaximumSize(QSize(16777215, 40));
+        zhuan_header->setStyleSheet(QString::fromUtf8("background:rgb(187, 210, 243);\n"
+"QPushButton {\n"
+"            text-align: left;\n"
+"            padding-left: 10px;\n"
+"            padding-right: 10px;\n"
+"            icon-size: 16px;\n"
+"}"));
         horizontalLayout_3 = new QHBoxLayout(zhuan_header);
         horizontalLayout_3->setObjectName("horizontalLayout_3");
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer_3 = new QSpacerItem(20, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_3->addItem(horizontalSpacer_3);
-
+        horizontalLayout_3->setContentsMargins(11, 0, 11, 0);
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName("horizontalLayout_6");
+        horizontalLayout_6->setContentsMargins(-1, 8, -1, 11);
         z_load_pushButton = new QPushButton(zhuan_header);
         z_load_pushButton->setObjectName("z_load_pushButton");
-        z_load_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        z_load_pushButton->setMinimumSize(QSize(0, 25));
+        z_load_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"    padding-right: 10px;\n"
+"    icon-size: 16px;\n"
+"}\n"
+""));
         QIcon icon9(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::DocumentPageSetup")));
         z_load_pushButton->setIcon(icon9);
 
-        horizontalLayout_3->addWidget(z_load_pushButton);
+        horizontalLayout_6->addWidget(z_load_pushButton);
 
         z_gui_pushButton = new QPushButton(zhuan_header);
         z_gui_pushButton->setObjectName("z_gui_pushButton");
-        z_gui_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        QSizePolicy sizePolicy4(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Preferred);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(z_gui_pushButton->sizePolicy().hasHeightForWidth());
+        z_gui_pushButton->setSizePolicy(sizePolicy4);
+        z_gui_pushButton->setMinimumSize(QSize(0, 25));
+        z_gui_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"    padding-right: 10px;\n"
+"    icon-size: 16px;\n"
+"}\n"
+""));
         QIcon icon10(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::HelpAbout")));
         z_gui_pushButton->setIcon(icon10);
 
-        horizontalLayout_3->addWidget(z_gui_pushButton);
+        horizontalLayout_6->addWidget(z_gui_pushButton);
+
+        line_8 = new QFrame(zhuan_header);
+        line_8->setObjectName("line_8");
+        line_8->setMaximumSize(QSize(16777215, 16777215));
+        line_8->setFrameShape(QFrame::VLine);
+        line_8->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_6->addWidget(line_8);
 
         z_sheng_pushButton = new QPushButton(zhuan_header);
         z_sheng_pushButton->setObjectName("z_sheng_pushButton");
-        z_sheng_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        z_sheng_pushButton->setMinimumSize(QSize(0, 25));
+        z_sheng_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"            text-align: left;\n"
+"            padding-left: 10px;\n"
+"            padding-right: 10px;\n"
+"            icon-size: 16px;\n"
+"}\n"
+""));
         QIcon icon11(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::AddressBookNew")));
         z_sheng_pushButton->setIcon(icon11);
 
-        horizontalLayout_3->addWidget(z_sheng_pushButton);
+        horizontalLayout_6->addWidget(z_sheng_pushButton);
 
         z_checkBox = new QCheckBox(zhuan_header);
         z_checkBox->setObjectName("z_checkBox");
@@ -597,37 +750,58 @@ public:
         font.setBold(true);
         z_checkBox->setFont(font);
 
-        horizontalLayout_3->addWidget(z_checkBox);
+        horizontalLayout_6->addWidget(z_checkBox);
+
+        line_7 = new QFrame(zhuan_header);
+        line_7->setObjectName("line_7");
+        line_7->setMaximumSize(QSize(16777215, 16777215));
+        line_7->setFrameShape(QFrame::VLine);
+        line_7->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_6->addWidget(line_7);
 
         z_save_pushButton = new QPushButton(zhuan_header);
         z_save_pushButton->setObjectName("z_save_pushButton");
-        QSizePolicy sizePolicy4(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(z_save_pushButton->sizePolicy().hasHeightForWidth());
-        z_save_pushButton->setSizePolicy(sizePolicy4);
-        z_save_pushButton->setMinimumSize(QSize(80, 0));
+        QSizePolicy sizePolicy5(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Preferred);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(z_save_pushButton->sizePolicy().hasHeightForWidth());
+        z_save_pushButton->setSizePolicy(sizePolicy5);
+        z_save_pushButton->setMinimumSize(QSize(80, 25));
         z_save_pushButton->setMaximumSize(QSize(80, 16777215));
-        z_save_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        z_save_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    icon-size: 16px;\n"
+"}\n"
+""));
         QIcon icon12(QIcon::fromTheme(QString::fromUtf8("QIcon::ThemeIcon::DocumentSave")));
         z_save_pushButton->setIcon(icon12);
 
-        horizontalLayout_3->addWidget(z_save_pushButton);
+        horizontalLayout_6->addWidget(z_save_pushButton);
 
         horizontalSpacer = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        horizontalLayout_3->addItem(horizontalSpacer);
+        horizontalLayout_6->addItem(horizontalSpacer);
 
 
-        verticalLayout_3->addWidget(zhuan_header);
+        horizontalLayout_3->addLayout(horizontalLayout_6);
+
+
+        verticalLayout_3->addWidget(zhuan_header, 0, Qt::AlignmentFlag::AlignVCenter);
 
         zhuan_widget = new QWidget(zhuan_page);
         zhuan_widget->setObjectName("zhuan_widget");
-        QSizePolicy sizePolicy5(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(zhuan_widget->sizePolicy().hasHeightForWidth());
-        zhuan_widget->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy6(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Expanding);
+        sizePolicy6.setHorizontalStretch(0);
+        sizePolicy6.setVerticalStretch(0);
+        sizePolicy6.setHeightForWidth(zhuan_widget->sizePolicy().hasHeightForWidth());
+        zhuan_widget->setSizePolicy(sizePolicy6);
+        zhuan_widget->setStyleSheet(QString::fromUtf8("QWidget {\n"
+"    background-color: rgb(255, 255, 255);\n"
+"}\n"
+""));
 
         verticalLayout_3->addWidget(zhuan_widget);
 
@@ -639,67 +813,179 @@ public:
         verticalLayout_4->setSpacing(0);
         verticalLayout_4->setObjectName("verticalLayout_4");
         verticalLayout_4->setContentsMargins(0, 0, 0, 0);
-        cen_header = new QWidget(cen_page);
+        cen_header = new QFrame(cen_page);
         cen_header->setObjectName("cen_header");
-        sizePolicy2.setHeightForWidth(cen_header->sizePolicy().hasHeightForWidth());
-        cen_header->setSizePolicy(sizePolicy2);
-        cen_header->setStyleSheet(QString::fromUtf8(""));
-        horizontalLayout_4 = new QHBoxLayout(cen_header);
-        horizontalLayout_4->setObjectName("horizontalLayout_4");
-        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
-        horizontalSpacer_4 = new QSpacerItem(20, 20, QSizePolicy::Policy::Maximum, QSizePolicy::Policy::Minimum);
-
-        horizontalLayout_4->addItem(horizontalSpacer_4);
-
+        sizePolicy.setHeightForWidth(cen_header->sizePolicy().hasHeightForWidth());
+        cen_header->setSizePolicy(sizePolicy);
+        cen_header->setMinimumSize(QSize(0, 20));
+        cen_header->setMaximumSize(QSize(16777215, 40));
+        cen_header->setStyleSheet(QString::fromUtf8("background:rgb(187, 210, 243);\n"
+"QPushButton {\n"
+"            text-align: left;\n"
+"            padding-left: 10px;\n"
+"            padding-right: 10px;\n"
+"            icon-size: 16px;\n"
+"}"));
+        horizontalLayout_5 = new QHBoxLayout(cen_header);
+        horizontalLayout_5->setObjectName("horizontalLayout_5");
+        horizontalLayout_5->setContentsMargins(11, 0, 11, 0);
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName("horizontalLayout_7");
+        horizontalLayout_7->setContentsMargins(-1, 8, -1, 11);
         c_load_pushButton = new QPushButton(cen_header);
         c_load_pushButton->setObjectName("c_load_pushButton");
-        c_load_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        c_load_pushButton->setMinimumSize(QSize(0, 25));
+        c_load_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"    padding-right: 10px;\n"
+"    icon-size: 16px;\n"
+"}\n"
+""));
         c_load_pushButton->setIcon(icon9);
 
-        horizontalLayout_4->addWidget(c_load_pushButton);
+        horizontalLayout_7->addWidget(c_load_pushButton);
 
         c_gui_pushButton = new QPushButton(cen_header);
         c_gui_pushButton->setObjectName("c_gui_pushButton");
-        c_gui_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        sizePolicy4.setHeightForWidth(c_gui_pushButton->sizePolicy().hasHeightForWidth());
+        c_gui_pushButton->setSizePolicy(sizePolicy4);
+        c_gui_pushButton->setMinimumSize(QSize(0, 25));
+        c_gui_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    text-align: left;\n"
+"    padding-left: 10px;\n"
+"    padding-right: 10px;\n"
+"    icon-size: 16px;\n"
+"}\n"
+""));
         c_gui_pushButton->setIcon(icon10);
 
-        horizontalLayout_4->addWidget(c_gui_pushButton);
+        horizontalLayout_7->addWidget(c_gui_pushButton);
 
-        c_sheng_pushButton = new QPushButton(cen_header);
-        c_sheng_pushButton->setObjectName("c_sheng_pushButton");
-        c_sheng_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
-        c_sheng_pushButton->setIcon(icon11);
+        line_9 = new QFrame(cen_header);
+        line_9->setObjectName("line_9");
+        line_9->setMaximumSize(QSize(16777215, 16777215));
+        line_9->setFrameShape(QFrame::VLine);
+        line_9->setFrameShadow(QFrame::Sunken);
 
-        horizontalLayout_4->addWidget(c_sheng_pushButton);
+        horizontalLayout_7->addWidget(line_9);
+
+        c_sheng_pushButton_2 = new QPushButton(cen_header);
+        c_sheng_pushButton_2->setObjectName("c_sheng_pushButton_2");
+        c_sheng_pushButton_2->setMinimumSize(QSize(0, 25));
+        c_sheng_pushButton_2->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"            text-align: left;\n"
+"            padding-left: 10px;\n"
+"            padding-right: 10px;\n"
+"            icon-size: 16px;\n"
+"}\n"
+""));
+        c_sheng_pushButton_2->setIcon(icon11);
+
+        horizontalLayout_7->addWidget(c_sheng_pushButton_2);
 
         c_checkBox = new QCheckBox(cen_header);
         c_checkBox->setObjectName("c_checkBox");
         c_checkBox->setFont(font);
 
-        horizontalLayout_4->addWidget(c_checkBox);
+        horizontalLayout_7->addWidget(c_checkBox);
+
+        line_10 = new QFrame(cen_header);
+        line_10->setObjectName("line_10");
+        line_10->setMaximumSize(QSize(16777215, 16777215));
+        line_10->setFrameShape(QFrame::VLine);
+        line_10->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_7->addWidget(line_10);
 
         c_save_pushButton = new QPushButton(cen_header);
         c_save_pushButton->setObjectName("c_save_pushButton");
-        sizePolicy4.setHeightForWidth(c_save_pushButton->sizePolicy().hasHeightForWidth());
-        c_save_pushButton->setSizePolicy(sizePolicy4);
-        c_save_pushButton->setMinimumSize(QSize(80, 0));
+        sizePolicy5.setHeightForWidth(c_save_pushButton->sizePolicy().hasHeightForWidth());
+        c_save_pushButton->setSizePolicy(sizePolicy5);
+        c_save_pushButton->setMinimumSize(QSize(80, 25));
         c_save_pushButton->setMaximumSize(QSize(80, 16777215));
-        c_save_pushButton->setStyleSheet(QString::fromUtf8("background-color: rgb(19, 200, 255);"));
+        c_save_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
+"    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
+"	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
+"    icon-size: 16px;\n"
+"}\n"
+""));
         c_save_pushButton->setIcon(icon12);
 
-        horizontalLayout_4->addWidget(c_save_pushButton);
+        horizontalLayout_7->addWidget(c_save_pushButton);
 
-        horizontalSpacer_5 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
+        horizontalSpacer_3 = new QSpacerItem(40, 20, QSizePolicy::Policy::Expanding, QSizePolicy::Policy::Minimum);
 
-        horizontalLayout_4->addItem(horizontalSpacer_5);
+        horizontalLayout_7->addItem(horizontalSpacer_3);
+
+
+        horizontalLayout_5->addLayout(horizontalLayout_7);
 
 
         verticalLayout_4->addWidget(cen_header);
 
         cen_widget = new QWidget(cen_page);
         cen_widget->setObjectName("cen_widget");
-        sizePolicy5.setHeightForWidth(cen_widget->sizePolicy().hasHeightForWidth());
-        cen_widget->setSizePolicy(sizePolicy5);
+        sizePolicy6.setHeightForWidth(cen_widget->sizePolicy().hasHeightForWidth());
+        cen_widget->setSizePolicy(sizePolicy6);
+        cen_widget->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        horizontalLayout_4 = new QHBoxLayout(cen_widget);
+        horizontalLayout_4->setSpacing(0);
+        horizontalLayout_4->setObjectName("horizontalLayout_4");
+        horizontalLayout_4->setContentsMargins(0, 0, 0, 0);
+        cen_tree_display = new QWidget(cen_widget);
+        cen_tree_display->setObjectName("cen_tree_display");
+        sizePolicy.setHeightForWidth(cen_tree_display->sizePolicy().hasHeightForWidth());
+        cen_tree_display->setSizePolicy(sizePolicy);
+        cen_tree_display->setMinimumSize(QSize(500, 0));
+
+        horizontalLayout_4->addWidget(cen_tree_display);
+
+        weught_display_st = new QStackedWidget(cen_widget);
+        weught_display_st->setObjectName("weught_display_st");
+        sizePolicy.setHeightForWidth(weught_display_st->sizePolicy().hasHeightForWidth());
+        weught_display_st->setSizePolicy(sizePolicy);
+        page = new QWidget();
+        page->setObjectName("page");
+        weught_display_st->addWidget(page);
+        page_2 = new QWidget();
+        page_2->setObjectName("page_2");
+        horizontalLayout_8 = new QHBoxLayout(page_2);
+        horizontalLayout_8->setSpacing(0);
+        horizontalLayout_8->setObjectName("horizontalLayout_8");
+        horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
+        treeWidget_2 = new QTreeWidget(page_2);
+        QTreeWidgetItem *__qtreewidgetitem4 = new QTreeWidgetItem();
+        __qtreewidgetitem4->setText(0, QString::fromUtf8("1"));
+        treeWidget_2->setHeaderItem(__qtreewidgetitem4);
+        treeWidget_2->setObjectName("treeWidget_2");
+
+        horizontalLayout_8->addWidget(treeWidget_2);
+
+        weught_display_st->addWidget(page_2);
+
+        horizontalLayout_4->addWidget(weught_display_st);
+
+        side_z_c = new QFrame(cen_widget);
+        side_z_c->setObjectName("side_z_c");
+        sizePolicy.setHeightForWidth(side_z_c->sizePolicy().hasHeightForWidth());
+        side_z_c->setSizePolicy(sizePolicy);
+        side_z_c->setMinimumSize(QSize(30, 0));
+        side_z_c->setFrameShape(QFrame::Shape::StyledPanel);
+        side_z_c->setFrameShadow(QFrame::Shadow::Raised);
+
+        horizontalLayout_4->addWidget(side_z_c);
+
 
         verticalLayout_4->addWidget(cen_widget);
 
@@ -710,9 +996,250 @@ public:
         stackedWidget->addWidget(weight_page);
         algorithm_page = new QWidget();
         algorithm_page->setObjectName("algorithm_page");
+        label_6 = new QLabel(algorithm_page);
+        label_6->setObjectName("label_6");
+        label_6->setGeometry(QRect(0, 2, 721, 20));
+        textBrowser = new QTextBrowser(algorithm_page);
+        textBrowser->setObjectName("textBrowser");
+        textBrowser->setGeometry(QRect(10, 90, 811, 61));
+        gridLayoutWidget = new QWidget(algorithm_page);
+        gridLayoutWidget->setObjectName("gridLayoutWidget");
+        gridLayoutWidget->setGeometry(QRect(440, 160, 495, 251));
+        gridLayout_2 = new QGridLayout(gridLayoutWidget);
+        gridLayout_2->setObjectName("gridLayout_2");
+        gridLayout_2->setContentsMargins(0, 0, 0, 0);
+        pushButton_10 = new QPushButton(gridLayoutWidget);
+        pushButton_10->setObjectName("pushButton_10");
+
+        gridLayout_2->addWidget(pushButton_10, 2, 0, 1, 1);
+
+        pushButton_16 = new QPushButton(gridLayoutWidget);
+        pushButton_16->setObjectName("pushButton_16");
+
+        gridLayout_2->addWidget(pushButton_16, 3, 1, 1, 1);
+
+        pushButton_18 = new QPushButton(gridLayoutWidget);
+        pushButton_18->setObjectName("pushButton_18");
+
+        gridLayout_2->addWidget(pushButton_18, 5, 1, 1, 1);
+
+        pushButton_11 = new QPushButton(gridLayoutWidget);
+        pushButton_11->setObjectName("pushButton_11");
+
+        gridLayout_2->addWidget(pushButton_11, 3, 0, 1, 1);
+
+        pushButton_21 = new QPushButton(gridLayoutWidget);
+        pushButton_21->setObjectName("pushButton_21");
+
+        gridLayout_2->addWidget(pushButton_21, 4, 2, 1, 1);
+
+        pushButton_24 = new QPushButton(gridLayoutWidget);
+        pushButton_24->setObjectName("pushButton_24");
+
+        gridLayout_2->addWidget(pushButton_24, 3, 3, 1, 1);
+
+        pushButton_12 = new QPushButton(gridLayoutWidget);
+        pushButton_12->setObjectName("pushButton_12");
+
+        gridLayout_2->addWidget(pushButton_12, 4, 0, 1, 1);
+
+        pushButton_9 = new QPushButton(gridLayoutWidget);
+        pushButton_9->setObjectName("pushButton_9");
+
+        gridLayout_2->addWidget(pushButton_9, 1, 3, 1, 1);
+
+        pushButton_17 = new QPushButton(gridLayoutWidget);
+        pushButton_17->setObjectName("pushButton_17");
+
+        gridLayout_2->addWidget(pushButton_17, 4, 1, 1, 1);
+
+        pushButton_30 = new QPushButton(gridLayoutWidget);
+        pushButton_30->setObjectName("pushButton_30");
+
+        gridLayout_2->addWidget(pushButton_30, 2, 4, 1, 1);
+
+        pushButton_20 = new QPushButton(gridLayoutWidget);
+        pushButton_20->setObjectName("pushButton_20");
+
+        gridLayout_2->addWidget(pushButton_20, 2, 2, 1, 1);
+
+        pushButton_25 = new QPushButton(gridLayoutWidget);
+        pushButton_25->setObjectName("pushButton_25");
+
+        gridLayout_2->addWidget(pushButton_25, 2, 3, 1, 1);
+
+        pushButton_22 = new QPushButton(gridLayoutWidget);
+        pushButton_22->setObjectName("pushButton_22");
+
+        gridLayout_2->addWidget(pushButton_22, 5, 2, 1, 1);
+
+        pushButton_7 = new QPushButton(gridLayoutWidget);
+        pushButton_7->setObjectName("pushButton_7");
+
+        gridLayout_2->addWidget(pushButton_7, 1, 1, 1, 1);
+
+        pushButton_13 = new QPushButton(gridLayoutWidget);
+        pushButton_13->setObjectName("pushButton_13");
+
+        gridLayout_2->addWidget(pushButton_13, 1, 4, 1, 1);
+
+        pushButton_14 = new QPushButton(gridLayoutWidget);
+        pushButton_14->setObjectName("pushButton_14");
+
+        gridLayout_2->addWidget(pushButton_14, 5, 0, 1, 1);
+
+        pushButton_23 = new QPushButton(gridLayoutWidget);
+        pushButton_23->setObjectName("pushButton_23");
+
+        gridLayout_2->addWidget(pushButton_23, 4, 3, 1, 1);
+
+        pushButton_29 = new QPushButton(gridLayoutWidget);
+        pushButton_29->setObjectName("pushButton_29");
+
+        gridLayout_2->addWidget(pushButton_29, 5, 4, 1, 1);
+
+        pushButton_15 = new QPushButton(gridLayoutWidget);
+        pushButton_15->setObjectName("pushButton_15");
+
+        gridLayout_2->addWidget(pushButton_15, 2, 1, 1, 1);
+
+        pushButton_26 = new QPushButton(gridLayoutWidget);
+        pushButton_26->setObjectName("pushButton_26");
+
+        gridLayout_2->addWidget(pushButton_26, 5, 3, 1, 1);
+
+        pushButton_27 = new QPushButton(gridLayoutWidget);
+        pushButton_27->setObjectName("pushButton_27");
+
+        gridLayout_2->addWidget(pushButton_27, 3, 4, 1, 1);
+
+        pushButton_8 = new QPushButton(gridLayoutWidget);
+        pushButton_8->setObjectName("pushButton_8");
+
+        gridLayout_2->addWidget(pushButton_8, 1, 2, 1, 1);
+
+        pushButton_28 = new QPushButton(gridLayoutWidget);
+        pushButton_28->setObjectName("pushButton_28");
+
+        gridLayout_2->addWidget(pushButton_28, 4, 4, 1, 1);
+
+        pushButton_19 = new QPushButton(gridLayoutWidget);
+        pushButton_19->setObjectName("pushButton_19");
+
+        gridLayout_2->addWidget(pushButton_19, 3, 2, 1, 1);
+
+        pushButton_6 = new QPushButton(gridLayoutWidget);
+        pushButton_6->setObjectName("pushButton_6");
+
+        gridLayout_2->addWidget(pushButton_6, 1, 0, 1, 1);
+
+        label_9 = new QLabel(gridLayoutWidget);
+        label_9->setObjectName("label_9");
+
+        gridLayout_2->addWidget(label_9, 0, 0, 1, 2);
+
+        comboBox = new QComboBox(gridLayoutWidget);
+        comboBox->setObjectName("comboBox");
+
+        gridLayout_2->addWidget(comboBox, 0, 2, 1, 3);
+
+        gridLayoutWidget_2 = new QWidget(algorithm_page);
+        gridLayoutWidget_2->setObjectName("gridLayoutWidget_2");
+        gridLayoutWidget_2->setGeometry(QRect(480, 420, 301, 151));
+        gridLayout_3 = new QGridLayout(gridLayoutWidget_2);
+        gridLayout_3->setObjectName("gridLayout_3");
+        gridLayout_3->setContentsMargins(0, 0, 0, 0);
+        pushButton_34 = new QPushButton(gridLayoutWidget_2);
+        pushButton_34->setObjectName("pushButton_34");
+
+        gridLayout_3->addWidget(pushButton_34, 0, 1, 1, 1);
+
+        pushButton_31 = new QPushButton(gridLayoutWidget_2);
+        pushButton_31->setObjectName("pushButton_31");
+
+        gridLayout_3->addWidget(pushButton_31, 2, 2, 1, 1);
+
+        pushButton_33 = new QPushButton(gridLayoutWidget_2);
+        pushButton_33->setObjectName("pushButton_33");
+
+        gridLayout_3->addWidget(pushButton_33, 0, 2, 1, 1);
+
+        pushButton_32 = new QPushButton(gridLayoutWidget_2);
+        pushButton_32->setObjectName("pushButton_32");
+
+        gridLayout_3->addWidget(pushButton_32, 1, 2, 1, 1);
+
+        pushButton_35 = new QPushButton(gridLayoutWidget_2);
+        pushButton_35->setObjectName("pushButton_35");
+
+        gridLayout_3->addWidget(pushButton_35, 0, 0, 1, 1);
+
+        pushButton_36 = new QPushButton(gridLayoutWidget_2);
+        pushButton_36->setObjectName("pushButton_36");
+
+        gridLayout_3->addWidget(pushButton_36, 1, 0, 1, 1);
+
+        pushButton_37 = new QPushButton(gridLayoutWidget_2);
+        pushButton_37->setObjectName("pushButton_37");
+
+        gridLayout_3->addWidget(pushButton_37, 1, 1, 1, 1);
+
+        pushButton_38 = new QPushButton(gridLayoutWidget_2);
+        pushButton_38->setObjectName("pushButton_38");
+
+        gridLayout_3->addWidget(pushButton_38, 2, 1, 1, 1);
+
+        pushButton_39 = new QPushButton(gridLayoutWidget_2);
+        pushButton_39->setObjectName("pushButton_39");
+
+        gridLayout_3->addWidget(pushButton_39, 2, 0, 1, 1);
+
+        scrollArea = new QScrollArea(algorithm_page);
+        scrollArea->setObjectName("scrollArea");
+        scrollArea->setGeometry(QRect(20, 160, 391, 401));
+        scrollArea->setWidgetResizable(true);
+        scrollAreaWidgetContents = new QWidget();
+        scrollAreaWidgetContents->setObjectName("scrollAreaWidgetContents");
+        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 389, 399));
+        treeView = new QTreeView(scrollAreaWidgetContents);
+        treeView->setObjectName("treeView");
+        treeView->setGeometry(QRect(10, 10, 371, 381));
+        scrollArea->setWidget(scrollAreaWidgetContents);
+        gridLayoutWidget_3 = new QWidget(algorithm_page);
+        gridLayoutWidget_3->setObjectName("gridLayoutWidget_3");
+        gridLayoutWidget_3->setGeometry(QRect(0, 30, 524, 31));
+        gridLayout_4 = new QGridLayout(gridLayoutWidget_3);
+        gridLayout_4->setObjectName("gridLayout_4");
+        gridLayout_4->setContentsMargins(0, 0, 0, 0);
+        label_8 = new QLabel(gridLayoutWidget_3);
+        label_8->setObjectName("label_8");
+
+        gridLayout_4->addWidget(label_8, 0, 0, 1, 1);
+
+        radioButton_2 = new QRadioButton(gridLayoutWidget_3);
+        radioButton_2->setObjectName("radioButton_2");
+
+        gridLayout_4->addWidget(radioButton_2, 0, 2, 1, 1);
+
+        radioButton = new QRadioButton(gridLayoutWidget_3);
+        radioButton->setObjectName("radioButton");
+
+        gridLayout_4->addWidget(radioButton, 0, 1, 1, 1);
+
+        radioButton_3 = new QRadioButton(gridLayoutWidget_3);
+        radioButton_3->setObjectName("radioButton_3");
+
+        gridLayout_4->addWidget(radioButton_3, 0, 3, 1, 1);
+
+        label_7 = new QLabel(algorithm_page);
+        label_7->setObjectName("label_7");
+        label_7->setGeometry(QRect(10, 69, 441, 21));
         stackedWidget->addWidget(algorithm_page);
 
         formLayout->setWidget(0, QFormLayout::FieldRole, stackedWidget);
+
+
+        verticalLayout_6->addWidget(widget);
 
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
@@ -746,11 +1273,11 @@ public:
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
-        QSizePolicy sizePolicy6(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
-        sizePolicy6.setHorizontalStretch(0);
-        sizePolicy6.setVerticalStretch(0);
-        sizePolicy6.setHeightForWidth(toolBar->sizePolicy().hasHeightForWidth());
-        toolBar->setSizePolicy(sizePolicy6);
+        QSizePolicy sizePolicy7(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(toolBar->sizePolicy().hasHeightForWidth());
+        toolBar->setSizePolicy(sizePolicy7);
         toolBar->setStyleSheet(QString::fromUtf8("#toolBar{\n"
 "\n"
 "background-color: rgb(187, 210, 243);\n"
@@ -908,9 +1435,50 @@ public:
         z_save_pushButton->setText(QCoreApplication::translate("MainWindow", "\344\277\235\345\255\230", nullptr));
         c_load_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\212\240\350\275\275\345\261\202\346\254\241\346\235\203\351\207\215\350\241\250", nullptr));
         c_gui_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\275\222\344\270\200\345\214\226\345\244\204\347\220\206", nullptr));
-        c_sheng_pushButton->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\347\273\274\345\220\210\346\235\203\351\207\215\350\241\250", nullptr));
+        c_sheng_pushButton_2->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\347\273\274\345\220\210\346\235\203\351\207\215\350\241\250", nullptr));
         c_checkBox->setText(QCoreApplication::translate("MainWindow", "\350\256\276\344\270\272\351\273\230\350\256\244\346\235\203\351\207\215\344\275\223\347\263\273", nullptr));
         c_save_pushButton->setText(QCoreApplication::translate("MainWindow", "\344\277\235\345\255\230", nullptr));
+        label_6->setText(QCoreApplication::translate("MainWindow", "\350\257\204\344\274\260\347\256\227\346\263\225\350\256\276\345\256\232", nullptr));
+        pushButton_10->setText(QCoreApplication::translate("MainWindow", "cos", nullptr));
+        pushButton_16->setText(QCoreApplication::translate("MainWindow", "mod", nullptr));
+        pushButton_18->setText(QCoreApplication::translate("MainWindow", ")", nullptr));
+        pushButton_11->setText(QCoreApplication::translate("MainWindow", "tan", nullptr));
+        pushButton_21->setText(QCoreApplication::translate("MainWindow", "n!", nullptr));
+        pushButton_24->setText(QCoreApplication::translate("MainWindow", "x^1/y", nullptr));
+        pushButton_12->setText(QCoreApplication::translate("MainWindow", "int", nullptr));
+        pushButton_9->setText(QCoreApplication::translate("MainWindow", "x^2", nullptr));
+        pushButton_17->setText(QCoreApplication::translate("MainWindow", "pi", nullptr));
+        pushButton_30->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
+        pushButton_20->setText(QCoreApplication::translate("MainWindow", "x^3", nullptr));
+        pushButton_25->setText(QCoreApplication::translate("MainWindow", "x^0.5", nullptr));
+        pushButton_22->setText(QCoreApplication::translate("MainWindow", "%", nullptr));
+        pushButton_7->setText(QCoreApplication::translate("MainWindow", "ln", nullptr));
+        pushButton_13->setText(QCoreApplication::translate("MainWindow", "=", nullptr));
+        pushButton_14->setText(QCoreApplication::translate("MainWindow", "(", nullptr));
+        pushButton_23->setText(QCoreApplication::translate("MainWindow", "1/x", nullptr));
+        pushButton_29->setText(QCoreApplication::translate("MainWindow", "=", nullptr));
+        pushButton_15->setText(QCoreApplication::translate("MainWindow", "log", nullptr));
+        pushButton_26->setText(QCoreApplication::translate("MainWindow", "C", nullptr));
+        pushButton_27->setText(QCoreApplication::translate("MainWindow", "*", nullptr));
+        pushButton_8->setText(QCoreApplication::translate("MainWindow", "cos", nullptr));
+        pushButton_28->setText(QCoreApplication::translate("MainWindow", "/", nullptr));
+        pushButton_19->setText(QCoreApplication::translate("MainWindow", "x^y", nullptr));
+        pushButton_6->setText(QCoreApplication::translate("MainWindow", "sin", nullptr));
+        label_9->setText(QCoreApplication::translate("MainWindow", "                  \347\256\227\346\263\225\351\200\211\346\213\251\350\276\223\345\205\245\357\274\232", nullptr));
+        pushButton_34->setText(QCoreApplication::translate("MainWindow", "2", nullptr));
+        pushButton_31->setText(QCoreApplication::translate("MainWindow", "9", nullptr));
+        pushButton_33->setText(QCoreApplication::translate("MainWindow", "3", nullptr));
+        pushButton_32->setText(QCoreApplication::translate("MainWindow", "6", nullptr));
+        pushButton_35->setText(QCoreApplication::translate("MainWindow", "1", nullptr));
+        pushButton_36->setText(QCoreApplication::translate("MainWindow", "4", nullptr));
+        pushButton_37->setText(QCoreApplication::translate("MainWindow", "5", nullptr));
+        pushButton_38->setText(QCoreApplication::translate("MainWindow", "8", nullptr));
+        pushButton_39->setText(QCoreApplication::translate("MainWindow", "7", nullptr));
+        label_8->setText(QCoreApplication::translate("MainWindow", "\345\272\224\347\224\250\350\214\203\345\233\264\351\200\211\346\213\251", nullptr));
+        radioButton_2->setText(QCoreApplication::translate("MainWindow", "\345\272\224\347\224\250\344\272\216\345\275\223\345\211\215\350\212\202\347\202\271", nullptr));
+        radioButton->setText(QCoreApplication::translate("MainWindow", "\345\272\224\347\224\250\344\272\216\346\211\200\346\234\211\350\212\202\347\202\271", nullptr));
+        radioButton_3->setText(QCoreApplication::translate("MainWindow", "\345\272\224\347\224\250\344\272\216\345\275\223\345\211\215\345\255\220\350\212\202\347\202\271", nullptr));
+        label_7->setText(QCoreApplication::translate("MainWindow", "\345\275\223\345\211\215\350\212\202\347\202\271\347\256\227\346\263\225\357\274\232", nullptr));
         menu->setTitle(QCoreApplication::translate("MainWindow", "       \346\214\207\346\240\207\344\275\223\347\263\273\347\256\241\347\220\206       ", nullptr));
         menu_2->setTitle(QCoreApplication::translate("MainWindow", "     \344\273\277\347\234\237\345\273\272\346\250\241     ", nullptr));
         menu_3->setTitle(QCoreApplication::translate("MainWindow", "     \350\257\204\344\274\260\345\210\206\346\236\220     ", nullptr));
