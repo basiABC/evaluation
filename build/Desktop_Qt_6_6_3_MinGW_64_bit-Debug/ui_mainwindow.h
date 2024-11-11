@@ -789,7 +789,7 @@ public:
         horizontalLayout_3->addLayout(horizontalLayout_6);
 
 
-        verticalLayout_3->addWidget(zhuan_header, 0, Qt::AlignmentFlag::AlignVCenter);
+        verticalLayout_3->addWidget(zhuan_header);
 
         zhuan_widget = new QWidget(zhuan_page);
         zhuan_widget->setObjectName("zhuan_widget");
@@ -1317,7 +1317,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(0);
-        weight_stack->setCurrentIndex(1);
+        weight_stack->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

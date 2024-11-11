@@ -9,6 +9,8 @@
 #include <QTreeWidget>
 #include <QStackedWidget>
 #include <QTreeWidgetItem>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -29,12 +31,14 @@ private slots:
 
     void onTreeWidgetItemClicked(QTreeWidgetItem *item, int column);
 
+    void setupNodeView();
 
     void on_zhuan_pushButton_clicked();
 
     void on_cen_pushButton_clicked();
 
 private:
+    QGraphicsView *view;
     Ui::MainWindow *ui;
     QLabel *fLabCurFile;
     QProgressBar *progressBar1;
@@ -43,6 +47,7 @@ private:
     QTreeWidget *treeWidget;
     QStackedWidget *stackedWidget;
     void iniUI();
+
 
 };
 #endif // MAINWINDOW_H

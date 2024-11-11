@@ -865,7 +865,7 @@ background:rgb(255, 255, 255);
            <item>
             <widget class="QStackedWidget" name="weight_stack">
              <property name="currentIndex">
-              <number>1</number>
+              <number>0</number>
              </property>
              <widget class="QWidget" name="zhuan_page">
               <layout class="QVBoxLayout" name="verticalLayout_3">
@@ -884,7 +884,7 @@ background:rgb(255, 255, 255);
                <property name="bottomMargin">
                 <number>0</number>
                </property>
-               <item alignment="Qt::AlignmentFlag::Qt::AlignmentFlag::AlignVCenter">
+               <item>
                 <widget class="QFrame" name="zhuan_header">
                  <property name="sizePolicy">
                   <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -1470,7 +1470,7 @@ QPushButton {
                     </widget>
                    </widget>
                   </item>
-                  <item alignment="">
+                  <item>
                    <widget class="QFrame" name="side_z_c">
                     <property name="sizePolicy">
                      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">

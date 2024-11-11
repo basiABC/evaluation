@@ -4,8 +4,9 @@
 #include <QTreeView>
 #include <QStandardItemModel>
 #include <QHeaderView>
-
-
+#include <QGraphicsScene>
+#include <QGraphicsView>
+#include "node.h"
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -13,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     ui->setupUi(this);
     iniUI();
+    setupNodeView();
     connect(ui->treeWidget, &QTreeWidget::itemClicked, this, &MainWindow::onTreeWidgetItemClicked);
 }
 
@@ -72,6 +74,21 @@ void MainWindow::on_pushButton_3_clicked()
 {
 
 }
+void MainWindow::setupNodeView() {
+    // 创建场景
+    QGraphicsScene* scene = new QGraphicsScene(this);
+
+    // 初始化 view 并将其设置为 widget_2 的子控件
+    view = new QGraphicsView(scene, ui->widget_2);
+    view->setRenderHint(QPainter::Antialiasing);
+
+    // 设置 view 的初始几何位置
+    view->setGeometry(5, 5, ui->widget_2->width()-10, ui->widget_2->height()-10);
+    Node* root = new Node("****任务效能", scene);
+    // 调整视图显示区域以包含所有节点
+    scene->setSceneRect(5, 5, ui->widget_2->width()-10, ui->widget_2->height()-10);
+
+}
 
 
 void MainWindow::on_zhuan_pushButton_clicked()
@@ -84,4 +101,5 @@ void MainWindow::on_cen_pushButton_clicked()
 {
     ui->weight_stack->setCurrentIndex(1);
 }
+
 
