@@ -6,7 +6,7 @@
 #include <QHeaderView>
 #include <QGraphicsScene>
 #include <QGraphicsView>
-#include "node.h"
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -76,17 +76,24 @@ void MainWindow::on_pushButton_3_clicked()
 }
 void MainWindow::setupNodeView() {
     // 创建场景
-    QGraphicsScene* scene = new QGraphicsScene(this);
+    scene = new QGraphicsScene(this);
 
     // 初始化 view 并将其设置为 widget_2 的子控件
     view = new QGraphicsView(scene, ui->widget_2);
     view->setRenderHint(QPainter::Antialiasing);
+    view->setContextMenuPolicy(Qt::DefaultContextMenu);
+
+    view->setDragMode(QGraphicsView::NoDrag);
 
     // 设置 view 的初始几何位置
     view->setGeometry(5, 5, ui->widget_2->width()-10, ui->widget_2->height()-10);
-    Node* root = new Node("****任务效能", scene);
+    root = new Node("****任务效能", scene);
+    Node* child1= new Node("zhibiao1",scene,root);
+    Node* child2= new Node("zhibiao2",scene,root);
+    Node* child3= new Node("zhibiao3",scene,child1);
+    Node* child4= new Node("zhibiao3",scene,child1);
     // 调整视图显示区域以包含所有节点
-    scene->setSceneRect(5, 5, ui->widget_2->width()-10, ui->widget_2->height()-10);
+    scene->setSceneRect(0, 0, ui->widget_2->width(), ui->widget_2->height());
 
 }
 
@@ -102,4 +109,47 @@ void MainWindow::on_cen_pushButton_clicked()
     ui->weight_stack->setCurrentIndex(1);
 }
 
+void MainWindow::clearSceneExceptRoot(Node* root) {
+    if (!scene) return;  // 检查 scene 是否为空
 
+    // 遍历场景中的所有项
+    for (QGraphicsItem* item : scene->items()) {
+        // 如果 item 不是 root，就将其从场景中移除
+        if (item != root) {
+            scene->removeItem(item);
+            delete item;  // 删除 item 以释放内存
+        }
+    }
+    root->children.clear();
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    int layers = ui->spinBox->value();
+    int nodesPerLayer = ui->spinBox_2->value();
+
+    // 清空场景中除 root 以外的所有节点
+    clearSceneExceptRoot(root);
+    // 调用函数在现有场景中添加新的节点层级结构
+    createLayeredStructure( layers, nodesPerLayer);
+}
+
+void MainWindow::createLayeredStructure(int layers, int nodesPerLayer) {
+    QList<Node*> previousLayer = { root };
+
+    // 创建新的层级结构
+    for (int i = 1; i <= layers; ++i) {
+        QList<Node*> currentLayer;
+
+        // 为每层创建指定数量的节点
+        for (int j = 0; j < nodesPerLayer; ++j) {
+            Node* node = new Node(QString("节点 %1-%2").arg(i).arg(j + 1), scene, previousLayer[j % previousLayer.size()]);
+
+            currentLayer.append(node);
+        }
+
+        // 将当前层设置为下一层的父节点
+        previousLayer = currentLayer;
+    }
+}

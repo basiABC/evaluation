@@ -448,6 +448,9 @@ background:rgb(187, 210, 243);
                 <height>16777215</height>
                </size>
               </property>
+              <property name="minimum">
+               <number>1</number>
+              </property>
              </widget>
             </item>
             <item>
@@ -479,6 +482,9 @@ background:rgb(187, 210, 243);
                 <width>35</width>
                 <height>16777215</height>
                </size>
+              </property>
+              <property name="minimum">
+               <number>1</number>
               </property>
              </widget>
             </item>

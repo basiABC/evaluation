@@ -11,6 +11,9 @@
 #include <QTreeWidgetItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include "node.h"
+
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -37,7 +40,11 @@ private slots:
 
     void on_cen_pushButton_clicked();
 
+    void on_pushButton_clicked();
+
 private:
+    QGraphicsScene* scene;
+    Node *root;
     QGraphicsView *view;
     Ui::MainWindow *ui;
     QLabel *fLabCurFile;
@@ -47,7 +54,8 @@ private:
     QTreeWidget *treeWidget;
     QStackedWidget *stackedWidget;
     void iniUI();
-
+    void clearSceneExceptRoot(Node* root);
+    void createLayeredStructure(int layers, int nodesPerLayer);
 
 };
 #endif // MAINWINDOW_H

@@ -420,6 +420,7 @@ public:
         spinBox->setObjectName("spinBox");
         spinBox->setMinimumSize(QSize(0, 25));
         spinBox->setMaximumSize(QSize(35, 16777215));
+        spinBox->setMinimum(1);
 
         horizontalLayout->addWidget(spinBox);
 
@@ -437,6 +438,7 @@ public:
         spinBox_2->setObjectName("spinBox_2");
         spinBox_2->setMinimumSize(QSize(0, 25));
         spinBox_2->setMaximumSize(QSize(35, 16777215));
+        spinBox_2->setMinimum(1);
 
         horizontalLayout->addWidget(spinBox_2);
 
