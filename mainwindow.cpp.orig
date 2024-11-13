@@ -4,6 +4,7 @@
 #include <QTreeView>
 #include <QStandardItemModel>
 #include <QHeaderView>
+<<<<<<< HEAD
 #include <QPainter>
 #include <QStyleOptionButton>
 #include <QStylePainter>
@@ -33,6 +34,10 @@ protected:
         return QSize(size.height(), size.width());
     }
 };
+=======
+#include <QGraphicsScene>
+#include <QGraphicsView>
+>>>>>>> a498b3132ee258ebe220db078be5ed0dddc9b631
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
