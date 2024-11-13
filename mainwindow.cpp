@@ -117,16 +117,20 @@ void MainWindow::setupNodeView() {
     view->setContextMenuPolicy(Qt::DefaultContextMenu);
 
     view->setDragMode(QGraphicsView::NoDrag);
+    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
+    view->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
 
     // 设置 view 的初始几何位置
     view->setGeometry(5, 5, ui->widget_2->width()-10, ui->widget_2->height()-10);
     root = new Node("****任务效能", scene);
-    Node* child1= new Node("zhibiao1",scene,root);
-    Node* child2= new Node("zhibiao2",scene,root);
-    Node* child3= new Node("zhibiao3",scene,child1);
-    Node* child4= new Node("zhibiao3",scene,child1);
-    // 调整视图显示区域以包含所有节点
-    scene->setSceneRect(0, 0, ui->widget_2->width(), ui->widget_2->height());
+    Node* child1= new Node(scene,root);
+    Node* child2= new Node(scene,root);
+    Node* child3= new Node(scene,child1);
+    Node* child4= new Node(scene,child2);
+
+
+
+
 
 }
 
@@ -156,6 +160,25 @@ void MainWindow::clearSceneExceptRoot(Node* root) {
     root->children.clear();
 }
 
+void MainWindow::clearAllLines() {
+    // 遍历场景中的所有项
+    for (auto item : scene->items()) {
+        // 如果项是 QGraphicsLineItem，则将其删除
+        if (auto lineItem = dynamic_cast<QGraphicsLineItem*>(item)) {
+            scene->removeItem(lineItem);
+            delete lineItem;
+        }
+    }
+}
+
+void MainWindow::connectAllLines() {
+    // 找到根节点（假设场景中只有一个根节点）
+
+    if (root) {
+        // 从根节点开始递归连接
+        connectLinesRecursively(root);
+    }
+}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -168,6 +191,33 @@ void MainWindow::on_pushButton_clicked()
     createLayeredStructure( layers, nodesPerLayer);
 }
 
+void MainWindow::connectLinesRecursively(Node* parentNode) {
+    QPen dashedPen(Qt::black);
+    dashedPen.setStyle(Qt::DashLine);
+    dashedPen.setWidth(1);
+
+    // 遍历父节点的所有子节点
+    for (auto childNode : parentNode->children) {
+        // 获取父节点的下半边中间位置
+        QPointF parentPos = parentNode->scenePos() + QPointF(parentNode->boundingRect().width() / 2, parentNode->boundingRect().height());
+
+        // 获取子节点的左边中间位置
+        QPointF childPos = childNode->scenePos() + QPointF(0, childNode->boundingRect().height() / 2);
+
+        // 计算折线的拐点
+        QPointF intermediatePoint(parentPos.x(), childPos.y());
+
+        // 绘制从父节点下边中间到拐点的垂直线
+        scene->addLine(QLineF(parentPos, intermediatePoint), dashedPen);
+
+        // 绘制从拐点到子节点左边中间的水平线
+        scene->addLine(QLineF(intermediatePoint, childPos), dashedPen);
+
+        // 递归连接子节点
+        connectLinesRecursively(childNode);
+    }
+}
+
 void MainWindow::createLayeredStructure(int layers, int nodesPerLayer) {
     QList<Node*> previousLayer = { root };
 
@@ -177,7 +227,7 @@ void MainWindow::createLayeredStructure(int layers, int nodesPerLayer) {
 
         // 为每层创建指定数量的节点
         for (int j = 0; j < nodesPerLayer; ++j) {
-            Node* node = new Node(QString("节点 %1-%2").arg(i).arg(j + 1), scene, previousLayer[j % previousLayer.size()]);
+            Node* node = new Node( scene, previousLayer[j % previousLayer.size()]);
 
             currentLayer.append(node);
         }

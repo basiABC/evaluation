@@ -7,6 +7,12 @@
 #include <QMenu>
 #include <QAction>
 #include <QGraphicsSceneContextMenuEvent>
+#include <QSpinBox>
+#include <QLabel>
+#include <QWidget>
+#include <QHBoxLayout>
+#include <QWidgetAction>
+#include <QPushButton>
 inline int node_x = 100;
 inline int node_y = 30;
 inline int x_gap = 75;
@@ -22,38 +28,110 @@ public:
     Node* parent = nullptr;
     QGraphicsScene* scene;
     bool isRootNode;
+    QGraphicsLineItem* verticalLine = nullptr;   // 用于存储垂直段的线
+    QGraphicsLineItem* horizontalLine = nullptr; // 用于存储水平段的线
     // 构造函数，接受 QString, QGraphicsScene* 和可选的 Node* 父节点
+    Node(QGraphicsScene* scene, Node* parent = nullptr)
+        : scene(scene), parent(parent) {
+        // 自动生成名称
+        name = generateDefaultName();
+        initializeNode();
+    }
+
     Node(const QString& name, QGraphicsScene* scene, Node* parent = nullptr)
         : name(name), scene(scene), parent(parent) {
-        // 初始化节点的位置
+        // 使用传入的名称
+        initializeNode();
+    }
+
+    void initializeNode() {
         if (parent) {
             parent->addChild(this);
             x = parent->x + x_gap;
-            y = parent->y + y_gap*(parent->returnChildnum());
-            isRootNode=false;
+            y = parent->y + y_gap * (parent->returnChildnum());
+            isRootNode = false;
             setFlag(QGraphicsItem::ItemIsSelectable, true);
             setFlag(QGraphicsItem::ItemIsFocusable, true);
             setFlag(QGraphicsItem::ItemIsMovable, false);
+
             Node* root = findRootNode();  // 找到根节点
-            root->shiftNodesDown(y,this);  // 从根节点开始调整位置
+            root->shiftNodesDown(y, this);  // 从根节点开始调整位置
         } else {
             x = 0;  // 设置根节点的初始位置
             y = 0;
-            isRootNode=true;
+            isRootNode = true;
             setFlag(QGraphicsItem::ItemIsSelectable, true);
             setFlag(QGraphicsItem::ItemIsFocusable, true);
             setFlag(QGraphicsItem::ItemIsMovable, false);
         }
 
-
         setPos(x, y);  // 设置 QGraphicsItem 的位置
-
+        addConnectionLine();
         // 将节点添加到场景中
         if (scene) {
             scene->addItem(this);
         }
+    }
 
+    QString generateDefaultName() {
+        if (parent == nullptr) {
+            // 根节点名称
+            return "****任务效能";
+        }
 
+        // 获取父节点当前的子节点数，以确定当前子节点的编号
+        int childIndex = parent->children.size() + 1;
+
+        if (parent->isRootNode) {
+            // 如果父节点是根节点，生成格式为 "指标N"
+            return QString("指标%1").arg(childIndex);
+        } else {
+            // 如果父节点不是根节点，生成格式为 "父节点名字-子节点编号"
+            return QString("%1-%2").arg(parent->name).arg(childIndex);
+        }
+    }
+
+    void addConnectionLine() {
+        if (parent && scene) {
+            // 使用虚线画笔
+            QPen dashedPen(Qt::DashLine);
+            dashedPen.setColor(Qt::black);
+            dashedPen.setWidth(1);
+
+            // 获取父节点的下半边中间位置
+            QPointF parentPos = parent->scenePos() + QPointF(parent->boundingRect().width() / 2, parent->boundingRect().height());
+
+            // 获取子节点的左边中间位置
+            QPointF childPos = this->scenePos() + QPointF(0, this->boundingRect().height() / 2);
+
+            // 计算折线的拐点
+            QPointF intermediatePoint(parentPos.x(), childPos.y());
+
+            // 创建并存储垂直段的线
+            verticalLine = new QGraphicsLineItem(QLineF(parentPos, intermediatePoint));
+            verticalLine->setPen(dashedPen);
+            scene->addItem(verticalLine);
+
+            // 创建并存储水平段的线
+            horizontalLine = new QGraphicsLineItem(QLineF(intermediatePoint, childPos));
+            horizontalLine->setPen(dashedPen);
+            scene->addItem(horizontalLine);
+        }
+    }
+
+    // 更新连接线位置的方法
+    void updateConnectionLine() {
+        if (verticalLine && horizontalLine && parent) {
+            QPointF parentPos = parent->scenePos() + QPointF(parent->boundingRect().width() / 2, parent->boundingRect().height());
+            QPointF childPos = this->scenePos() + QPointF(0, this->boundingRect().height() / 2);
+            QPointF intermediatePoint(parentPos.x(), childPos.y());
+
+            // 更新垂直段的线
+            verticalLine->setLine(QLineF(parentPos, intermediatePoint));
+
+            // 更新水平段的线
+            horizontalLine->setLine(QLineF(intermediatePoint, childPos));
+        }
     }
 
     void addChild(Node* child) {
@@ -90,6 +168,7 @@ public:
         if (this->y >= y_threshold) {
             this->y += y_gap;
             setPos(this->x, this->y);  // 更新 QGraphicsItem 的位置
+            updateConnectionLine();
         }
 
         // 递归遍历所有子节点
@@ -107,8 +186,38 @@ protected:
     void contextMenuEvent(QGraphicsSceneContextMenuEvent* event) override {
         QMenu menu;
 
-        // 添加菜单项
-        QAction* addAction = menu.addAction("新建子节点");
+        QWidget* widgetContainer = new QWidget();
+        QHBoxLayout* layout = new QHBoxLayout(widgetContainer);
+        layout->setContentsMargins(28, 0, 0, 0);  // 设置边距
+
+        // 创建 QLabel、QSpinBox 和 QPushButton
+        QLabel* label = new QLabel("新建子节点", widgetContainer);
+        QSpinBox* spinBox = new QSpinBox(widgetContainer);
+        spinBox->setRange(1, 10);  // 设置数量范围
+        spinBox->setValue(1);       // 默认值为 1
+        QPushButton* applyButton = new QPushButton("应用", widgetContainer);
+
+        // 将 QLabel、QSpinBox 和 QPushButton 添加到水平布局中
+        layout->addWidget(label);
+        layout->addWidget(spinBox);
+        layout->addWidget(applyButton);
+
+        // 创建 QWidgetAction 并设置其默认小部件
+        QWidgetAction* widgetAction = new QWidgetAction(&menu);
+        widgetAction->setDefaultWidget(widgetContainer);
+        menu.addAction(widgetAction);  // 将 QWidgetAction 添加到菜单中
+
+        QObject::connect(applyButton, &QPushButton::clicked, [&]() {
+            int count = spinBox->value();  // 获取 QSpinBox 的值
+            for (int i = 0; i < count; ++i) {
+                Node* childNode = new Node(scene, this); // 创建子节点
+
+            }
+            menu.close();  // 关闭菜单
+        });
+
+
+
         QAction* deleteAction = menu.addAction("删除(D)");
         QAction* renameAction = menu.addAction("重命名(R)");
         QAction* selectAction = menu.addAction("选中节点(S)");
@@ -120,10 +229,7 @@ protected:
         QAction* selectedAction = menu.exec(event->screenPos());
 
         // 判断用户选择了哪个操作，并执行相应操作
-        if (selectedAction == addAction) {
-            // 执行新建子节点操作
-            createChildNode();
-        } else if (selectedAction == deleteAction) {
+        if (selectedAction == deleteAction) {
             // 执行删除操作
             deleteNode();
         } else if (selectedAction == renameAction) {
