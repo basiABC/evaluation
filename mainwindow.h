@@ -46,7 +46,7 @@ private slots:
     void on_generate_weight_pushButton_clicked();
 
 private:
-    QGraphicsScene* scene;
+    QGraphicsScene *scene;
     Node *root;
     QGraphicsView *view;
     Ui::MainWindow *ui;
@@ -59,6 +59,9 @@ private:
     void iniUI();
     void clearSceneExceptRoot(Node* root);
     void createLayeredStructure(int layers, int nodesPerLayer);
+    void clearAllLines();
+    void connectLinesRecursively(Node* parentNode);
+    void connectAllLines();
 
 };
 #endif // MAINWINDOW_H

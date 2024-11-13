@@ -191,12 +191,13 @@ QTreeView::item {
 }
 
 QTreeView::item:selected {
-    background-color: rgb(5, 40, 150); /* 选中项的背景颜色 */
+    background-color: rgb(19, 71, 136);
     color: white; /* 选中项的文字颜色 */
 }
 
-QTreeView::item:hover {
-    background-color: rgb(4, 35, 120); /* 悬停时的背景颜色 */
+QTreeView::item:hover{
+    background-color:  rgb(19, 71, 136);
+    color: white; /* 选中项的文字颜色 */
 }
 
 QTreeView::item:has-children {

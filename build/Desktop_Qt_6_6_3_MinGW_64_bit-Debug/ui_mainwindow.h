@@ -128,7 +128,6 @@ public:
     QWidget *page;
     QWidget *page_2;
     QHBoxLayout *horizontalLayout_8;
-    QTreeWidget *treeWidget_2;
     QFrame *side_z_c;
     QWidget *algorithm_page;
     QLabel *label_6;
@@ -334,12 +333,13 @@ public:
 "}\n"
 "\n"
 "QTreeView::item:selected {\n"
-"    background-color: rgb(5, 40, 150); /* \351\200\211\344\270\255\351\241\271\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"    background-color: rgb(19, 71, 136);\n"
 "    color: white; /* \351\200\211\344\270\255\351\241\271\347\232\204\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
 "}\n"
 "\n"
-"QTreeView::item:hover {\n"
-"    background-color: rgb(4, 35, 120); /* \346\202\254\345\201\234\346\227\266\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"QTreeView::item:hover{\n"
+"    background-color:  rgb(19, 71, 136);\n"
+"    color: white; /* \351\200\211\344\270\255\351\241\271\347\232\204\346\226\207\345\255\227\351\242\234\350\211\262 */\n"
 "}\n"
 "\n"
 "QTreeView::item:has-children {\n"
@@ -350,9 +350,9 @@ public:
 "}\n"
 "\n"
 "QTreeView::branch:has-children {\n"
-"    background-color: rgb(67, 115, 152); /* \347\210\266\350\212\202\347\202\271\347\232"
-                        "\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
-"    border-bottom: 1px solid white;\n"
+"    background-color: rgb(67, 115, 152); /* \347\210\266\350\212\202\347\202\271\347\232\204\350\203\214\346\231\257\351\242\234\350\211\262 */\n"
+"    border-bottom"
+                        ": 1px solid white;\n"
 "    border-top: 1px solid white;\n"
 "}\n"
 "\n"
@@ -950,6 +950,7 @@ public:
         sizePolicy.setHeightForWidth(cen_tree_display->sizePolicy().hasHeightForWidth());
         cen_tree_display->setSizePolicy(sizePolicy);
         cen_tree_display->setMinimumSize(QSize(500, 0));
+        cen_tree_display->setStyleSheet(QString::fromUtf8(""));
 
         horizontalLayout_4->addWidget(cen_tree_display);
 
@@ -957,6 +958,7 @@ public:
         weught_display_st->setObjectName("weught_display_st");
         sizePolicy.setHeightForWidth(weught_display_st->sizePolicy().hasHeightForWidth());
         weught_display_st->setSizePolicy(sizePolicy);
+        weught_display_st->setStyleSheet(QString::fromUtf8(""));
         page = new QWidget();
         page->setObjectName("page");
         weught_display_st->addWidget(page);
@@ -966,14 +968,6 @@ public:
         horizontalLayout_8->setSpacing(0);
         horizontalLayout_8->setObjectName("horizontalLayout_8");
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        treeWidget_2 = new QTreeWidget(page_2);
-        QTreeWidgetItem *__qtreewidgetitem4 = new QTreeWidgetItem();
-        __qtreewidgetitem4->setText(0, QString::fromUtf8("1"));
-        treeWidget_2->setHeaderItem(__qtreewidgetitem4);
-        treeWidget_2->setObjectName("treeWidget_2");
-
-        horizontalLayout_8->addWidget(treeWidget_2);
-
         weught_display_st->addWidget(page_2);
 
         horizontalLayout_4->addWidget(weught_display_st);
@@ -982,12 +976,15 @@ public:
         side_z_c->setObjectName("side_z_c");
         sizePolicy.setHeightForWidth(side_z_c->sizePolicy().hasHeightForWidth());
         side_z_c->setSizePolicy(sizePolicy);
-        side_z_c->setMinimumSize(QSize(30, 0));
+        side_z_c->setMinimumSize(QSize(28, 0));
         side_z_c->setFrameShape(QFrame::Shape::StyledPanel);
         side_z_c->setFrameShadow(QFrame::Shadow::Raised);
 
         horizontalLayout_4->addWidget(side_z_c);
 
+        side_z_c->raise();
+        cen_tree_display->raise();
+        weught_display_st->raise();
 
         verticalLayout_4->addWidget(cen_widget);
 
