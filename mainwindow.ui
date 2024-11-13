@@ -550,7 +550,7 @@ background:rgb(187, 210, 243);
              </widget>
             </item>
             <item>
-             <widget class="QPushButton" name="pushButton_3">
+             <widget class="QPushButton" name="generate_weight_pushButton">
               <property name="minimumSize">
                <size>
                 <width>100</width>
@@ -1841,7 +1841,7 @@ QPushButton {
             <rect>
              <x>0</x>
              <y>30</y>
-             <width>524</width>
+             <width>530</width>
              <height>31</height>
             </rect>
            </property>
@@ -1903,7 +1903,7 @@ QPushButton {
      <x>0</x>
      <y>0</y>
      <width>1036</width>
-     <height>22</height>
+     <height>21</height>
     </rect>
    </property>
    <property name="styleSheet">

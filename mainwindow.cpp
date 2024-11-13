@@ -7,6 +7,11 @@
 #include <QPainter>
 #include <QStyleOptionButton>
 #include <QStylePainter>
+#include <QInputDialog>
+#include <QMessageBox>
+#include <QFileDialog>
+#include "xlsxdocument.h"
+#include "xlsxformat.h"
 
 class VerticalButton : public QPushButton {
 public:
@@ -103,10 +108,7 @@ MainWindow::~MainWindow()
 
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
 
-}
 void MainWindow::setupNodeView() {
     // 创建场景
     scene = new QGraphicsScene(this);
@@ -186,3 +188,96 @@ void MainWindow::createLayeredStructure(int layers, int nodesPerLayer) {
         previousLayer = currentLayer;
     }
 }
+
+void MainWindow::on_z_load_pushButton_clicked()
+{
+    bool ok;
+    int expertCount = QInputDialog::getInt(this, "输入专家数量", "请输入需要几位专家：", 1, 1, 10, 1, &ok);
+    if (!ok) return;
+
+    QStringList expertNames;
+    QStringList filePaths;
+    for (int i = 0; i < expertCount; ++i) {
+        QString expertName = QInputDialog::getText(this, tr("输入专家姓名"), tr("专家 %1 姓名：").arg(i + 1), QLineEdit::Normal, "", &ok);
+        if (!ok || expertName.isEmpty()) {
+            QMessageBox::warning(this, "警告", "专家姓名不能为空。");
+            return;
+        }
+        expertNames << expertName;
+
+        QString defaultPath = "C:/默认路径/";
+        QString filePath = QFileDialog::getOpenFileName(this, tr("导入专家评分文件"), defaultPath, tr("所有文件 (*.*);;文本文件 (*.txt);;Excel 文件 (*.xlsx)"));
+        if (filePath.isEmpty()) {
+            QMessageBox::warning(this, "警告", "未选择文件。");
+            return;
+        }
+        filePaths << filePath;
+    }
+
+    QMessageBox::information(this, "导入成功", tr("已成功导入 %1 位专家的评分文件。").arg(expertCount));
+
+}
+
+
+void MainWindow::on_generate_weight_pushButton_clicked()
+{
+    QXlsx::Document xlsx;
+
+    // 设置标题格式
+    QXlsx::Format titleFormat;
+    titleFormat.setFontBold(true);
+    titleFormat.setHorizontalAlignment(QXlsx::Format::AlignHCenter);
+    titleFormat.setVerticalAlignment(QXlsx::Format::AlignVCenter);
+    titleFormat.setBorderStyle(QXlsx::Format::BorderThin);
+
+    // 设置普通单元格格式
+    QXlsx::Format cellFormat;
+    cellFormat.setHorizontalAlignment(QXlsx::Format::AlignHCenter);
+    cellFormat.setVerticalAlignment(QXlsx::Format::AlignVCenter);
+    cellFormat.setBorderStyle(QXlsx::Format::BorderThin);
+
+    // 设置列标题
+    xlsx.write("A1", "一级能力", titleFormat);
+    xlsx.write("B1", "二级能力", titleFormat);
+    xlsx.write("C1", "三级能力", titleFormat);
+    xlsx.write("D1", "指标项", titleFormat);
+    xlsx.write("E1", "权重", titleFormat);
+
+    // 示例数据填充
+    xlsx.write("A2", "任务效率", cellFormat);
+    xlsx.write("B2", "一级能力1", cellFormat);
+    xlsx.write("C2", "三级能力1-1", cellFormat);
+    xlsx.write("D2", "指标项1-1-a", cellFormat);
+    xlsx.write("E2", "25%", cellFormat);
+
+    xlsx.write("D3", "指标项1-1-b", cellFormat);
+    xlsx.write("E3", "33%", cellFormat);
+
+    xlsx.write("C4", "三级能力1-2", cellFormat);
+    xlsx.write("D4", "指标项1-2-a", cellFormat);
+    xlsx.write("E4", "20%", cellFormat);
+
+    xlsx.write("D5", "指标项1-2-b", cellFormat);
+    xlsx.write("E5", "27%", cellFormat);
+
+    // 合并单元格
+    xlsx.mergeCells("A2:A5", cellFormat);  // 合并一级能力
+    xlsx.mergeCells("B2:B5", cellFormat);  // 合并二级能力1
+
+    // 添加更多数据
+    xlsx.write("B6", "一级能力2", cellFormat);
+    xlsx.write("C6", "三级能力2-1", cellFormat);
+    xlsx.write("D6", "指标项2-1-a", cellFormat);
+    xlsx.write("E6", "38%", cellFormat);
+
+    xlsx.write("D7", "指标项2-1-b", cellFormat);
+    xlsx.write("E7", "62%", cellFormat);
+
+    xlsx.mergeCells("A6:A7", cellFormat);  // 合并一级能力2
+    xlsx.mergeCells("B6:B7", cellFormat);  // 合并二级能力2
+
+    // 保存 Excel 文件
+    xlsx.saveAs("D:\\MyCode\\Qt\\evaluation_sys\\evaluation\\weight.xlsx");
+    QMessageBox::information(this,tr("提示"),tr("模板生成成功！"));
+}
+

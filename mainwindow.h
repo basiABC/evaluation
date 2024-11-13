@@ -30,7 +30,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_3_clicked();
 
     void onTreeWidgetItemClicked(QTreeWidgetItem *item, int column);
 
@@ -41,6 +40,10 @@ private slots:
     void on_cen_pushButton_clicked();
 
     void on_pushButton_clicked();
+
+    void on_z_load_pushButton_clicked();
+
+    void on_generate_weight_pushButton_clicked();
 
 private:
     QGraphicsScene* scene;
