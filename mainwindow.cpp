@@ -127,7 +127,7 @@ void MainWindow::setupNodeView() {
     Node* child2= new Node(scene,root);
     Node* child3= new Node(scene,child1);
     Node* child4= new Node(scene,child2);
-
+    Node* child5= new Node(scene,root);
 
 
 
@@ -218,21 +218,22 @@ void MainWindow::connectLinesRecursively(Node* parentNode) {
     }
 }
 
-void MainWindow::createLayeredStructure(int layers, int nodesPerLayer) {
-    QList<Node*> previousLayer = { root };
+void MainWindow::createLayeredStructure(int layers, int nodesPerLayer, Node* parent , int currentLayer ) {
+    // 如果到达了最大层数，则停止
+    if (currentLayer > layers) return;
 
-    // 创建新的层级结构
-    for (int i = 1; i <= layers; ++i) {
-        QList<Node*> currentLayer;
+    // 如果是初始调用，没有传入父节点，则使用根节点
+    if (parent == nullptr) {
+        parent = root;
+    }
 
-        // 为每层创建指定数量的节点
-        for (int j = 0; j < nodesPerLayer; ++j) {
-            Node* node = new Node( scene, previousLayer[j % previousLayer.size()]);
+    // 为当前层的每个节点生成 nodesPerLayer 个子节点
+    for (int i = 0; i < nodesPerLayer; ++i) {
+        // 创建新的节点，父节点为传入的 parent
+        Node* childNode = new Node(scene, parent);
 
-            currentLayer.append(node);
-        }
 
-        // 将当前层设置为下一层的父节点
-        previousLayer = currentLayer;
+        // 递归调用，为每个子节点生成下一层的子节点
+        createLayeredStructure(layers, nodesPerLayer, childNode, currentLayer + 1);
     }
 }

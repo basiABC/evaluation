@@ -55,7 +55,7 @@ private:
     QStackedWidget *stackedWidget;
     void iniUI();
     void clearSceneExceptRoot(Node* root);
-    void createLayeredStructure(int layers, int nodesPerLayer);
+    void createLayeredStructure(int layers, int nodesPerLayer, Node* parent = nullptr, int currentLayer = 1);
     void clearAllLines();
     void connectLinesRecursively(Node* parentNode);
     void connectAllLines();

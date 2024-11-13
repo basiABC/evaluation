@@ -44,11 +44,24 @@ public:
         initializeNode();
     }
 
+    int calculateTotalDescendants() const {
+        int count = children.size(); // 直接子节点数量
+
+        // 递归累加所有子节点的子节点数量
+        for (const Node* child : children) {
+            count += child->calculateTotalDescendants();
+        }
+
+        return count;
+    }
+
+
     void initializeNode() {
         if (parent) {
             parent->addChild(this);
             x = parent->x + x_gap;
-            y = parent->y + y_gap * (parent->returnChildnum());
+            int totalDescendants = parent->calculateTotalDescendants();
+            y = parent->y + y_gap * totalDescendants;
             isRootNode = false;
             setFlag(QGraphicsItem::ItemIsSelectable, true);
             setFlag(QGraphicsItem::ItemIsFocusable, true);
