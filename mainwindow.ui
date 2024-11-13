@@ -1417,6 +1417,9 @@ QPushButton {
                       <height>0</height>
                      </size>
                     </property>
+                    <property name="styleSheet">
+                     <string notr="true"/>
+                    </property>
                    </widget>
                   </item>
                   <item>
@@ -1426,6 +1429,9 @@ QPushButton {
                       <horstretch>0</horstretch>
                       <verstretch>0</verstretch>
                      </sizepolicy>
+                    </property>
+                    <property name="styleSheet">
+                     <string notr="true"/>
                     </property>
                     <widget class="QWidget" name="page"/>
                     <widget class="QWidget" name="page_2">
@@ -1445,15 +1451,6 @@ QPushButton {
                       <property name="bottomMargin">
                        <number>0</number>
                       </property>
-                      <item>
-                       <widget class="QTreeWidget" name="treeWidget_2">
-                        <column>
-                         <property name="text">
-                          <string notr="true">1</string>
-                         </property>
-                        </column>
-                       </widget>
-                      </item>
                      </layout>
                     </widget>
                    </widget>
@@ -1468,7 +1465,7 @@ QPushButton {
                     </property>
                     <property name="minimumSize">
                      <size>
-                      <width>30</width>
+                      <width>28</width>
                       <height>0</height>
                      </size>
                     </property>
@@ -1481,6 +1478,9 @@ QPushButton {
                    </widget>
                   </item>
                  </layout>
+                 <zorder>side_z_c</zorder>
+                 <zorder>cen_tree_display</zorder>
+                 <zorder>weught_display_st</zorder>
                 </widget>
                </item>
               </layout>

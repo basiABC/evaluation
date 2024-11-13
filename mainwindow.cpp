@@ -4,7 +4,35 @@
 #include <QTreeView>
 #include <QStandardItemModel>
 #include <QHeaderView>
+#include <QPainter>
+#include <QStyleOptionButton>
+#include <QStylePainter>
 
+class VerticalButton : public QPushButton {
+public:
+    VerticalButton(const QString &text, QWidget *parent = nullptr)
+        : QPushButton(text, parent) {}
+
+protected:
+    void paintEvent(QPaintEvent *event) override {
+        QStylePainter painter(this);
+        QStyleOptionButton option;
+        initStyleOption(&option);
+
+        painter.rotate(90);
+
+        QRect rect = option.rect;
+        rect.setRect(-rect.height(), rect.x(), rect.width(), rect.height());
+
+        option.rect = rect;
+        painter.drawControl(QStyle::CE_PushButton, option);
+    }
+
+    QSize sizeHint() const override {
+        QSize size = QPushButton::sizeHint();
+        return QSize(size.height(), size.width());
+    }
+};
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -44,8 +72,14 @@ void MainWindow::iniUI(){
     comboFont= new QFontComboBox;
     comboFont->setMinimumWidth(150);
     ui->toolBar->addWidget(comboFont);
+    QVBoxLayout *layout = new QVBoxLayout(ui->side_z_c);
 
-    //setCentralWidget(ui->txtEdit);
+    for (int i = 0; i < 5; ++i) {
+        VerticalButton *button = new VerticalButton(QString("Button %1").arg(i + 1), ui->side_z_c);
+        layout->addWidget(button);
+    }
+
+    ui->side_z_c->setLayout(layout);
 }
 
 void MainWindow::onTreeWidgetItemClicked(QTreeWidgetItem *item, int column)
