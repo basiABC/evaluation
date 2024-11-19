@@ -72,7 +72,7 @@ public:
     QPushButton *pushButton;
     QPushButton *pushButton_2;
     QFrame *line;
-    QPushButton *pushButton_3;
+    QPushButton *generate_weight_pushButton;
     QFrame *line_2;
     QPushButton *pushButton_4;
     QPushButton *pushButton_5;
@@ -83,7 +83,7 @@ public:
     QVBoxLayout *verticalLayout_5;
     QLabel *label_5;
     QFrame *line_3;
-    QLabel *label_4;
+    QLabel *details;
     QFrame *line_4;
     QFrame *frame_3;
     QWidget *weight_page;
@@ -475,17 +475,17 @@ public:
 
         horizontalLayout->addWidget(line);
 
-        pushButton_3 = new QPushButton(frame_2);
-        pushButton_3->setObjectName("pushButton_3");
-        pushButton_3->setMinimumSize(QSize(100, 25));
-        pushButton_3->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+        generate_weight_pushButton = new QPushButton(frame_2);
+        generate_weight_pushButton->setObjectName("generate_weight_pushButton");
+        generate_weight_pushButton->setMinimumSize(QSize(100, 25));
+        generate_weight_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
 "    color: #ffffff; /* \345\255\227\344\275\223\351\242\234\350\211\262 */\n"
 "	border-radius: 4px; /* \345\234\206\350\247\222\345\215\212\345\276\204 */\n"
 "}\n"
 ""));
 
-        horizontalLayout->addWidget(pushButton_3);
+        horizontalLayout->addWidget(generate_weight_pushButton);
 
         line_2 = new QFrame(frame_2);
         line_2->setObjectName("line_2");
@@ -557,10 +557,10 @@ public:
 
         verticalLayout_5->addWidget(line_3);
 
-        label_4 = new QLabel(frame_4);
-        label_4->setObjectName("label_4");
+        details = new QLabel(frame_4);
+        details->setObjectName("details");
 
-        verticalLayout_5->addWidget(label_4);
+        verticalLayout_5->addWidget(details);
 
         line_4 = new QFrame(frame_4);
         line_4->setObjectName("line_4");
@@ -1206,7 +1206,7 @@ public:
         scrollArea->setWidget(scrollAreaWidgetContents);
         gridLayoutWidget_3 = new QWidget(algorithm_page);
         gridLayoutWidget_3->setObjectName("gridLayoutWidget_3");
-        gridLayoutWidget_3->setGeometry(QRect(0, 30, 524, 31));
+        gridLayoutWidget_3->setGeometry(QRect(0, 30, 530, 31));
         gridLayout_4 = new QGridLayout(gridLayoutWidget_3);
         gridLayout_4->setObjectName("gridLayout_4");
         gridLayout_4->setContentsMargins(0, 0, 0, 0);
@@ -1420,11 +1420,11 @@ public:
         label_3->setText(QCoreApplication::translate("MainWindow", "\346\257\217\345\261\202\345\271\263\345\235\207\350\212\202\347\202\271\346\225\260\357\274\232", nullptr));
         pushButton->setText(QCoreApplication::translate("MainWindow", "\345\277\253\351\200\237\345\210\233\345\273\272", nullptr));
         pushButton_2->setText(QCoreApplication::translate("MainWindow", "\345\244\215\345\210\266\345\210\233\345\273\272", nullptr));
-        pushButton_3->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\346\235\203\351\207\215\346\250\241\346\235\277", nullptr));
+        generate_weight_pushButton->setText(QCoreApplication::translate("MainWindow", "\347\224\237\346\210\220\346\235\203\351\207\215\346\250\241\346\235\277", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "\345\205\250\351\203\250\345\261\225\345\274\200", nullptr));
         pushButton_5->setText(QCoreApplication::translate("MainWindow", "\345\205\250\351\203\250\346\224\266\347\274\251", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "\345\255\220\350\212\202\347\202\271\350\257\246\347\273\206\344\277\241\346\201\257\357\274\232", nullptr));
-        label_4->setText(QString());
+        details->setText(QString());
         zhuan_pushButton->setText(QCoreApplication::translate("MainWindow", "\344\270\223\345\256\266\345\210\206\346\236\220\346\263\225", nullptr));
         cen_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\261\202\346\254\241\345\210\206\346\236\220\346\263\225", nullptr));
         z_load_pushButton->setText(QCoreApplication::translate("MainWindow", "\345\212\240\350\275\275\344\270\223\345\256\266\346\235\203\351\207\215\350\241\250", nullptr));

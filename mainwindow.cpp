@@ -124,12 +124,12 @@ void MainWindow::setupNodeView() {
 
     // 设置 view 的初始几何位置
     view->setGeometry(5, 5, ui->widget_2->width()-10, ui->widget_2->height()-10);
-    root = new Node("****任务效能", scene);
-    Node* child1= new Node(scene,root);
-    Node* child2= new Node(scene,root);
-    Node* child3= new Node(scene,child1);
-    Node* child4= new Node(scene,child2);
-    Node* child5= new Node(scene,root);
+    root = new Node("****任务效能", scene, nullptr,this);
+    Node* child1= new Node(scene,root,this);
+    Node* child2= new Node(scene,root,this);
+    Node* child3= new Node(scene,child1,this);
+    Node* child4= new Node(scene,child2,this);
+    Node* child5= new Node(scene,root,this);
 
 
 
@@ -232,7 +232,7 @@ void MainWindow::createLayeredStructure(int layers, int nodesPerLayer, Node* par
     // 为当前层的每个节点生成 nodesPerLayer 个子节点
     for (int i = 0; i < nodesPerLayer; ++i) {
         // 创建新的节点，父节点为传入的 parent
-        Node* childNode = new Node(scene, parent);
+        Node* childNode = new Node(scene, parent,this);
 
 
         // 递归调用，为每个子节点生成下一层的子节点
