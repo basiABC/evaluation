@@ -342,7 +342,7 @@ QTreeView::branch:!has-children {
           <string notr="true">background-color: rgb(231, 231, 231);</string>
          </property>
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="index_page">
           <property name="enabled">
@@ -831,6 +831,12 @@ background:rgb(255, 255, 255);
               </item>
               <item>
                <widget class="QPushButton" name="cen_pushButton">
+                <property name="sizePolicy">
+                 <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                  <horstretch>0</horstretch>
+                  <verstretch>0</verstretch>
+                 </sizepolicy>
+                </property>
                 <property name="minimumSize">
                  <size>
                   <width>0</width>
@@ -850,6 +856,12 @@ background:rgb(255, 255, 255);
                  <iconset theme="QIcon::ThemeIcon::FormatJustifyCenter">
                   <normalon>:/paste.png</normalon>
                  </iconset>
+                </property>
+                <property name="iconSize">
+                 <size>
+                  <width>16</width>
+                  <height>16</height>
+                 </size>
                 </property>
                </widget>
               </item>
