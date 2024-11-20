@@ -229,9 +229,52 @@ protected:
         }
     }
 
-    void deleteNode(){
+    void deleteNode() {
+        // 如果当前节点有父节点，从父节点的子节点列表中移除自身
 
+        // 递归删除所有子节点
+        for (Node* child : children) {
+            if (scene) {
+                scene->removeItem(child); // 从场景中移除子节点
+            }
+            child->deleteNode(); // 递归调用删除子节点
+        }
+
+        bool isdown=false;
+        Node* root = findRootNode();
+        root->shiftNodesDown(y, this,isdown);
+
+        if (parent) {
+            parent->children.removeOne(this); // 从父节点的子节点列表中移除
+        }
+
+        // 清空子节点列表
+        children.clear();
+
+        // 删除当前节点的连线
+        if (scene) {
+            if (verticalLine) {
+                scene->removeItem(verticalLine);
+                delete verticalLine;
+                verticalLine = nullptr;
+            }
+            if (horizontalLine) {
+                scene->removeItem(horizontalLine);
+                delete horizontalLine;
+                horizontalLine = nullptr;
+            }
+        }
+
+
+        // 从场景中移除当前节点
+        if (scene) {
+            scene->removeItem(this);
+        }
+
+        // 最后删除当前节点
+        delete this;
     }
+
 
     void renameNode(){
 

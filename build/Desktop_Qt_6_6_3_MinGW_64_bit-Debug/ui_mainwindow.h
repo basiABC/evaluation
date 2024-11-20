@@ -629,6 +629,8 @@ public:
 
         cen_pushButton = new QPushButton(weight_header);
         cen_pushButton->setObjectName("cen_pushButton");
+        sizePolicy3.setHeightForWidth(cen_pushButton->sizePolicy().hasHeightForWidth());
+        cen_pushButton->setSizePolicy(sizePolicy3);
         cen_pushButton->setMinimumSize(QSize(0, 30));
         cen_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    qproperty-iconSize: 24px 24px; /* \345\233\276\346\240\207\345\244\247\345\260\217 */\n"
@@ -642,6 +644,7 @@ public:
             icon8.addFile(QString::fromUtf8(":/paste.png"), QSize(), QIcon::Normal, QIcon::On);
         }
         cen_pushButton->setIcon(icon8);
+        cen_pushButton->setIconSize(QSize(16, 16));
 
         horizontalLayout_2->addWidget(cen_pushButton);
 
@@ -1315,7 +1318,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
         weight_stack->setCurrentIndex(0);
 
 
