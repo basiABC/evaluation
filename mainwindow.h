@@ -11,6 +11,10 @@
 #include <QTreeWidgetItem>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QVector>
+#include <QPainter>
+#include <QStyleOptionButton>
+#include <QStylePainter>
 #include "node.h"
 
 
@@ -56,6 +60,7 @@ private:
     QSpinBox   *spinFontSize;
     QTreeWidget *treeWidget;
     QStackedWidget *stackedWidget;
+
     void iniUI();
     void clearSceneExceptRoot(Node* root);
     void createLayeredStructure(int layers, int nodesPerLayer, Node* parent = nullptr, int currentLayer = 1);

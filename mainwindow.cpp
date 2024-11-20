@@ -10,13 +10,22 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QFileDialog>
+#include <QTreeWidget>
+#include <QTreeWidgetItem>
+#include <QBrush>
+#include <QColor>
+#include <iostream>
 #include "xlsxdocument.h"
 #include "xlsxformat.h"
 
 class VerticalButton : public QPushButton {
 public:
-    VerticalButton(const QString &text, QWidget *parent = nullptr)
-        : QPushButton(text, parent) {}
+    VerticalButton(const QString &text,QWidget *parent = nullptr, QStackedWidget *s_widget=nullptr,QWidget *page = nullptr)
+        : QPushButton(text, parent) {
+        this->v_b_name = text;
+        this->page = page;
+        this->s_widget = s_widget;
+    }
 
 protected:
     void paintEvent(QPaintEvent *event) override {
@@ -24,19 +33,42 @@ protected:
         QStyleOptionButton option;
         initStyleOption(&option);
 
+        // 设置按钮的样式状态
+        option.rect = QRect(0, 0, height(), width()); // 调整绘制区域
+        option.state |= QStyle::State_HasFocus;      // 添加聚焦样式（可以让按钮更明显）
+
+        painter.save();
+        painter.translate(width() / 2, height() / 2);
         painter.rotate(90);
+        painter.translate(-height() / 2, -width() / 2);
 
-        QRect rect = option.rect;
-        rect.setRect(-rect.height(), rect.x(), rect.width(), rect.height());
-
-        option.rect = rect;
+        // 绘制按钮
         painter.drawControl(QStyle::CE_PushButton, option);
+
+        painter.restore();
     }
 
     QSize sizeHint() const override {
         QSize size = QPushButton::sizeHint();
         return QSize(size.height(), size.width());
     }
+
+    //点击后显示对应的权重在weight_display窗口
+    void mousePressEvent(QMouseEvent *event) override {
+        // 点击后展示对应的权重信息在窗口中
+        if (event->button() == Qt::LeftButton) {
+            //展示权重在窗口
+            s_widget->setCurrentWidget(this->page);
+            QMessageBox::information(this, "Clicked", "专家"+QString(this->v_b_name)+"权重数据展示");
+        }
+
+        QPushButton::mousePressEvent(event);
+    }
+private:
+    QString v_b_name;
+    QWidget *page;
+    QStackedWidget *s_widget;
+
 };
 
 MainWindow::MainWindow(QWidget *parent)
@@ -61,7 +93,6 @@ void MainWindow::iniUI(){
     progressBar1->setMaximumWidth(200);
     progressBar1->setMaximum(50);
     progressBar1->setMinimum(5);
-    //progressBar1->setValue(ui->txtEdit->font().pointSize());
     ui->statusbar->addWidget(progressBar1);
 
     spinFontSize=new QSpinBox;
@@ -115,6 +146,13 @@ void MainWindow::setupNodeView() {
 
     // 初始化 view 并将其设置为 widget_2 的子控件
     view = new QGraphicsView(scene, ui->widget_2);
+    QGraphicsView *zhuan_view,*cen_view;
+    zhuan_view = new QGraphicsView(scene,ui->zhuan_tree_display);
+    cen_view = new QGraphicsView(scene,ui->cen_tree_display);
+    QVBoxLayout *zhuan_layout = new QVBoxLayout(ui->zhuan_tree_display);
+    zhuan_layout->addWidget(zhuan_view);
+    QVBoxLayout *cen_layout = new QVBoxLayout(ui->cen_tree_display);
+    cen_layout->addWidget(cen_view);
     view->setRenderHint(QPainter::Antialiasing);
     view->setContextMenuPolicy(Qt::DefaultContextMenu);
 
@@ -197,6 +235,96 @@ void MainWindow::createLayeredStructure(int layers, int nodesPerLayer, Node* par
     }
 }
 
+//读入对应的excel并展示在stackwidget中
+void readExcel(QXlsx::Document &xlsx, Node* node){
+    int row,col;
+    if(node->children.isEmpty()){
+        return;
+    }
+    for(Node* child:node->children){
+        row = child->y/y_gap+1;
+        col = child->x/x_gap+2;
+        child->weight= xlsx.read(row,col).toDouble();
+        qInfo() << child->weight;
+        readExcel(xlsx,child);
+    }
+    return;
+}
+
+void weightNormalization(Node* node){
+    int total=0;
+    if(!node->children.isEmpty()){
+        for(Node* child:node->children){
+            total+=child->weight;
+        }
+        for(Node* child:node->children){
+            child->weight/=total;
+            child->weight*=100;
+            qInfo() <<child->weight;
+            weightNormalization(child);
+        }
+    }
+    return;
+}
+
+void setupTreeWidget(QTreeWidgetItem* treeItem,Node* node) {
+    if(!node->children.isEmpty()){
+        for(Node* child:node->children){
+                QTreeWidgetItem *item = new QTreeWidgetItem(treeItem);
+                item->setText(0, child->name);
+                item->setText(1, QString::number(child->weight)+"%");
+                setupTreeWidget(item,child);
+            }
+
+    }
+
+    return;
+}
+
+// 设置条形背景长度
+void setBarStyle(QTreeWidgetItem *item, int level) {
+    // 根据层次调整颜色深度
+    QColor color = QColor(100 + level * 20, 150, 255 - level * 30);
+    item->setBackground(0, QBrush(color));
+}
+
+// 应用到节点
+void applyBarStyle(QTreeWidgetItem *item, int level) {
+    setBarStyle(item, level);
+    for (int i = 0; i < item->childCount(); ++i) {
+        applyBarStyle(item->child(i), level + 1);
+    }
+}
+
+void setWeightDisplay(QWidget* page,QString filePath,Node* root){
+    QXlsx::Document xlsx(filePath);
+    if (!xlsx.load()) {
+        qDebug() << "Failed to load Excel file.";
+        return;
+    }
+    readExcel(xlsx,root);
+    weightNormalization(root);
+    QTreeWidget *treeWidget = new QTreeWidget(page);
+    QVBoxLayout *layout = new QVBoxLayout(page);
+    layout->addWidget(treeWidget);
+    page->setLayout(layout);
+    treeWidget->setColumnCount(2);
+    treeWidget->setHeaderLabels(QStringList() << "指标项" << "权重");
+    for(Node* child:root->children){
+        QTreeWidgetItem *item = new QTreeWidgetItem(treeWidget);
+        item->setText(0, child->name);
+        item->setText(1, QString::number(child->weight)+"%");
+        setupTreeWidget(item,child);
+    }
+    for (int i = 0; i < treeWidget->topLevelItemCount(); ++i) {
+        applyBarStyle(treeWidget->topLevelItem(i), 0);
+    }
+    std::cout<<"success";
+    treeWidget->expandAll();
+    return;
+}
+
+//导入专家权重
 void MainWindow::on_z_load_pushButton_clicked()
 {
     bool ok;
@@ -205,6 +333,9 @@ void MainWindow::on_z_load_pushButton_clicked()
 
     QStringList expertNames;
     QStringList filePaths;
+    //QVector<VerticalButton *> vb;
+    QVBoxLayout *layout = new QVBoxLayout(ui->side_z_c_3);
+
     for (int i = 0; i < expertCount; ++i) {
         QString expertName = QInputDialog::getText(this, tr("输入专家姓名"), tr("专家 %1 姓名：").arg(i + 1), QLineEdit::Normal, "", &ok);
         if (!ok || expertName.isEmpty()) {
@@ -213,17 +344,34 @@ void MainWindow::on_z_load_pushButton_clicked()
         }
         expertNames << expertName;
 
-        QString defaultPath = "C:/默认路径/";
+        QString defaultPath = "D:\\MyCode\\Qt\\evaluation_sys\\evaluation";
         QString filePath = QFileDialog::getOpenFileName(this, tr("导入专家评分文件"), defaultPath, tr("所有文件 (*.*);;文本文件 (*.txt);;Excel 文件 (*.xlsx)"));
         if (filePath.isEmpty()) {
             QMessageBox::warning(this, "警告", "未选择文件。");
             return;
         }
         filePaths << filePath;
+        QWidget *page = new QWidget(ui->zhuan_weight_display_st);
+        ui->zhuan_weight_display_st->addWidget(page);
+        VerticalButton *zhuan_b = new VerticalButton(expertName,ui->side_z_c_3,ui->zhuan_weight_display_st,page);
+        layout->addWidget(zhuan_b);
+        setWeightDisplay(page,filePath,root);
     }
+    ui->side_z_c_3->setLayout(layout);
 
     QMessageBox::information(this, "导入成功", tr("已成功导入 %1 位专家的评分文件。").arg(expertCount));
 
+}
+
+
+void writeNodeToExcel(QXlsx::Document &xlsx, const Node *node,QXlsx::Format format) {
+    int col = node->x/x_gap+1;
+    int row = node->y/y_gap+1;
+    xlsx.write(row,col,node->name,format);
+    for(const Node* child:node->children){
+        writeNodeToExcel(xlsx,child,format);
+    }
+    return;
 }
 
 
@@ -244,47 +392,14 @@ void MainWindow::on_generate_weight_pushButton_clicked()
     cellFormat.setVerticalAlignment(QXlsx::Format::AlignVCenter);
     cellFormat.setBorderStyle(QXlsx::Format::BorderThin);
 
-    // 设置列标题
-    xlsx.write("A1", "一级能力", titleFormat);
-    xlsx.write("B1", "二级能力", titleFormat);
-    xlsx.write("C1", "三级能力", titleFormat);
-    xlsx.write("D1", "指标项", titleFormat);
-    xlsx.write("E1", "权重", titleFormat);
+    // 创建树并写入数据
+    writeNodeToExcel(xlsx, root,titleFormat);
 
-    // 示例数据填充
-    xlsx.write("A2", "任务效率", cellFormat);
-    xlsx.write("B2", "一级能力1", cellFormat);
-    xlsx.write("C2", "三级能力1-1", cellFormat);
-    xlsx.write("D2", "指标项1-1-a", cellFormat);
-    xlsx.write("E2", "25%", cellFormat);
+    xlsx.setColumnWidth(1, 20);
+    xlsx.setColumnWidth(2, 20);
+    xlsx.setColumnWidth(3, 20);
+    xlsx.setColumnWidth(4, 10);
 
-    xlsx.write("D3", "指标项1-1-b", cellFormat);
-    xlsx.write("E3", "33%", cellFormat);
-
-    xlsx.write("C4", "三级能力1-2", cellFormat);
-    xlsx.write("D4", "指标项1-2-a", cellFormat);
-    xlsx.write("E4", "20%", cellFormat);
-
-    xlsx.write("D5", "指标项1-2-b", cellFormat);
-    xlsx.write("E5", "27%", cellFormat);
-
-    // 合并单元格
-    xlsx.mergeCells("A2:A5", cellFormat);  // 合并一级能力
-    xlsx.mergeCells("B2:B5", cellFormat);  // 合并二级能力1
-
-    // 添加更多数据
-    xlsx.write("B6", "一级能力2", cellFormat);
-    xlsx.write("C6", "三级能力2-1", cellFormat);
-    xlsx.write("D6", "指标项2-1-a", cellFormat);
-    xlsx.write("E6", "38%", cellFormat);
-
-    xlsx.write("D7", "指标项2-1-b", cellFormat);
-    xlsx.write("E7", "62%", cellFormat);
-
-    xlsx.mergeCells("A6:A7", cellFormat);  // 合并一级能力2
-    xlsx.mergeCells("B6:B7", cellFormat);  // 合并二级能力2
-
-    // 保存 Excel 文件
     xlsx.saveAs("D:\\MyCode\\Qt\\evaluation_sys\\evaluation\\weight.xlsx");
     QMessageBox::information(this,tr("提示"),tr("模板生成成功！"));
 }
