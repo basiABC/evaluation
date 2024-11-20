@@ -162,25 +162,7 @@ void MainWindow::clearSceneExceptRoot(Node* root) {
     root->children.clear();
 }
 
-void MainWindow::clearAllLines() {
-    // 遍历场景中的所有项
-    for (auto item : scene->items()) {
-        // 如果项是 QGraphicsLineItem，则将其删除
-        if (auto lineItem = dynamic_cast<QGraphicsLineItem*>(item)) {
-            scene->removeItem(lineItem);
-            delete lineItem;
-        }
-    }
-}
 
-void MainWindow::connectAllLines() {
-    // 找到根节点（假设场景中只有一个根节点）
-
-    if (root) {
-        // 从根节点开始递归连接
-        connectLinesRecursively(root);
-    }
-}
 
 void MainWindow::on_pushButton_clicked()
 {
@@ -193,32 +175,7 @@ void MainWindow::on_pushButton_clicked()
     createLayeredStructure( layers, nodesPerLayer);
 }
 
-void MainWindow::connectLinesRecursively(Node* parentNode) {
-    QPen dashedPen(Qt::black);
-    dashedPen.setStyle(Qt::DashLine);
-    dashedPen.setWidth(1);
 
-    // 遍历父节点的所有子节点
-    for (auto childNode : parentNode->children) {
-        // 获取父节点的下半边中间位置
-        QPointF parentPos = parentNode->scenePos() + QPointF(parentNode->boundingRect().width() / 2, parentNode->boundingRect().height());
-
-        // 获取子节点的左边中间位置
-        QPointF childPos = childNode->scenePos() + QPointF(0, childNode->boundingRect().height() / 2);
-
-        // 计算折线的拐点
-        QPointF intermediatePoint(parentPos.x(), childPos.y());
-
-        // 绘制从父节点下边中间到拐点的垂直线
-        scene->addLine(QLineF(parentPos, intermediatePoint), dashedPen);
-
-        // 绘制从拐点到子节点左边中间的水平线
-        scene->addLine(QLineF(intermediatePoint, childPos), dashedPen);
-
-        // 递归连接子节点
-        connectLinesRecursively(childNode);
-    }
-}
 
 void MainWindow::createLayeredStructure(int layers, int nodesPerLayer, Node* parent , int currentLayer ) {
     // 如果到达了最大层数，则停止
