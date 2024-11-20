@@ -35,7 +35,7 @@ public:
     bool isRootNode = false;
     QGraphicsLineItem* verticalLine = nullptr;   // 用于存储垂直段的线
     QGraphicsLineItem* horizontalLine = nullptr; // 用于存储水平段的线
-    double weight;
+    double weight=0;
 
     Node(QGraphicsScene* scene, Node* parent = nullptr, QWidget* mainWindow = nullptr)
         : QGraphicsObject(nullptr), scene(scene), parent(parent), mainWindow(mainWindow) {
