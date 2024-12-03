@@ -15,6 +15,8 @@
 #include <QPainter>
 #include <QStyleOptionButton>
 #include <QStylePainter>
+#include <QMessageBox>
+#include <QMouseEvent>
 #include "node.h"
 
 
@@ -32,6 +34,60 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    class VerticalButton : public QPushButton {
+    public:
+        VerticalButton(const QString &text,QWidget *parent = nullptr, QStackedWidget *s_widget=nullptr,QWidget *page = nullptr)
+            : QPushButton(text, parent) {
+            this->v_b_name = text;
+            this->page = page;
+            this->s_widget = s_widget;
+        }
+
+    protected:
+        void paintEvent(QPaintEvent *event) override {
+            QStylePainter painter(this);
+            QStyleOptionButton option;
+            initStyleOption(&option);
+
+            // 设置按钮的样式状态
+            option.rect = QRect(0, 0, height(), width()); // 调整绘制区域
+            option.state |= QStyle::State_HasFocus;      // 添加聚焦样式（可以让按钮更明显）
+
+            painter.save();
+            painter.translate(width() / 2, height() / 2);
+            painter.rotate(90);
+            painter.translate(-height() / 2, -width() / 2);
+
+            // 绘制按钮
+            painter.drawControl(QStyle::CE_PushButton, option);
+
+            painter.restore();
+        }
+
+        QSize sizeHint() const override {
+            QSize size = QPushButton::sizeHint();
+            return QSize(size.height(), size.width());
+        }
+
+        //点击后显示对应的权重在weight_display窗口
+        void mousePressEvent(QMouseEvent *event) override {
+            // 点击后展示对应的权重信息在窗口中
+            if (event->button() == Qt::LeftButton) {
+                //展示权重在窗口
+                s_widget->setCurrentWidget(this->page);
+                QMessageBox::information(this, "Clicked", "专家"+QString(this->v_b_name)+"权重数据展示");
+            }
+
+            QPushButton::mousePressEvent(event);
+        }
+    private:
+        QString v_b_name;
+        QWidget *page;
+        QStackedWidget *s_widget;
+
+    };
+
+
 
 private slots:
 

@@ -108,6 +108,13 @@ public:
     QPushButton *z_save_pushButton;
     QSpacerItem *horizontalSpacer;
     QWidget *zhuan_widget;
+    QHBoxLayout *horizontalLayout_9;
+    QWidget *zhuan_tree_display;
+    QStackedWidget *zhuan_weight_display_st;
+    QWidget *page_5;
+    QWidget *page_6;
+    QHBoxLayout *horizontalLayout_11;
+    QFrame *side_z_c_3;
     QWidget *cen_page;
     QVBoxLayout *verticalLayout_4;
     QFrame *cen_header;
@@ -124,7 +131,7 @@ public:
     QWidget *cen_widget;
     QHBoxLayout *horizontalLayout_4;
     QWidget *cen_tree_display;
-    QStackedWidget *weught_display_st;
+    QStackedWidget *cen_weight_display_st;
     QWidget *page;
     QWidget *page_2;
     QHBoxLayout *horizontalLayout_8;
@@ -644,7 +651,7 @@ public:
             icon8.addFile(QString::fromUtf8(":/paste.png"), QSize(), QIcon::Normal, QIcon::On);
         }
         cen_pushButton->setIcon(icon8);
-        cen_pushButton->setIconSize(QSize(16, 16));
+        cen_pushButton->setIconSize(QSize(24, 24));
 
         horizontalLayout_2->addWidget(cen_pushButton);
 
@@ -807,6 +814,47 @@ public:
 "    background-color: rgb(255, 255, 255);\n"
 "}\n"
 ""));
+        horizontalLayout_9 = new QHBoxLayout(zhuan_widget);
+        horizontalLayout_9->setSpacing(0);
+        horizontalLayout_9->setObjectName("horizontalLayout_9");
+        horizontalLayout_9->setContentsMargins(0, 0, 0, 0);
+        zhuan_tree_display = new QWidget(zhuan_widget);
+        zhuan_tree_display->setObjectName("zhuan_tree_display");
+        sizePolicy.setHeightForWidth(zhuan_tree_display->sizePolicy().hasHeightForWidth());
+        zhuan_tree_display->setSizePolicy(sizePolicy);
+        zhuan_tree_display->setMinimumSize(QSize(500, 0));
+        zhuan_tree_display->setStyleSheet(QString::fromUtf8(""));
+
+        horizontalLayout_9->addWidget(zhuan_tree_display);
+
+        zhuan_weight_display_st = new QStackedWidget(zhuan_widget);
+        zhuan_weight_display_st->setObjectName("zhuan_weight_display_st");
+        sizePolicy.setHeightForWidth(zhuan_weight_display_st->sizePolicy().hasHeightForWidth());
+        zhuan_weight_display_st->setSizePolicy(sizePolicy);
+        zhuan_weight_display_st->setStyleSheet(QString::fromUtf8(""));
+        page_5 = new QWidget();
+        page_5->setObjectName("page_5");
+        zhuan_weight_display_st->addWidget(page_5);
+        page_6 = new QWidget();
+        page_6->setObjectName("page_6");
+        horizontalLayout_11 = new QHBoxLayout(page_6);
+        horizontalLayout_11->setSpacing(0);
+        horizontalLayout_11->setObjectName("horizontalLayout_11");
+        horizontalLayout_11->setContentsMargins(0, 0, 0, 0);
+        zhuan_weight_display_st->addWidget(page_6);
+
+        horizontalLayout_9->addWidget(zhuan_weight_display_st);
+
+        side_z_c_3 = new QFrame(zhuan_widget);
+        side_z_c_3->setObjectName("side_z_c_3");
+        sizePolicy.setHeightForWidth(side_z_c_3->sizePolicy().hasHeightForWidth());
+        side_z_c_3->setSizePolicy(sizePolicy);
+        side_z_c_3->setMinimumSize(QSize(28, 0));
+        side_z_c_3->setFrameShape(QFrame::Shape::StyledPanel);
+        side_z_c_3->setFrameShadow(QFrame::Shadow::Raised);
+
+        horizontalLayout_9->addWidget(side_z_c_3, 0, Qt::AlignmentFlag::AlignRight);
+
 
         verticalLayout_3->addWidget(zhuan_widget);
 
@@ -957,23 +1005,23 @@ public:
 
         horizontalLayout_4->addWidget(cen_tree_display);
 
-        weught_display_st = new QStackedWidget(cen_widget);
-        weught_display_st->setObjectName("weught_display_st");
-        sizePolicy.setHeightForWidth(weught_display_st->sizePolicy().hasHeightForWidth());
-        weught_display_st->setSizePolicy(sizePolicy);
-        weught_display_st->setStyleSheet(QString::fromUtf8(""));
+        cen_weight_display_st = new QStackedWidget(cen_widget);
+        cen_weight_display_st->setObjectName("cen_weight_display_st");
+        sizePolicy.setHeightForWidth(cen_weight_display_st->sizePolicy().hasHeightForWidth());
+        cen_weight_display_st->setSizePolicy(sizePolicy);
+        cen_weight_display_st->setStyleSheet(QString::fromUtf8(""));
         page = new QWidget();
         page->setObjectName("page");
-        weught_display_st->addWidget(page);
+        cen_weight_display_st->addWidget(page);
         page_2 = new QWidget();
         page_2->setObjectName("page_2");
         horizontalLayout_8 = new QHBoxLayout(page_2);
         horizontalLayout_8->setSpacing(0);
         horizontalLayout_8->setObjectName("horizontalLayout_8");
         horizontalLayout_8->setContentsMargins(0, 0, 0, 0);
-        weught_display_st->addWidget(page_2);
+        cen_weight_display_st->addWidget(page_2);
 
-        horizontalLayout_4->addWidget(weught_display_st);
+        horizontalLayout_4->addWidget(cen_weight_display_st);
 
         side_z_c = new QFrame(cen_widget);
         side_z_c->setObjectName("side_z_c");
@@ -983,11 +1031,11 @@ public:
         side_z_c->setFrameShape(QFrame::Shape::StyledPanel);
         side_z_c->setFrameShadow(QFrame::Shadow::Raised);
 
-        horizontalLayout_4->addWidget(side_z_c);
+        horizontalLayout_4->addWidget(side_z_c, 0, Qt::AlignmentFlag::AlignLeft);
 
         side_z_c->raise();
         cen_tree_display->raise();
-        weught_display_st->raise();
+        cen_weight_display_st->raise();
 
         verticalLayout_4->addWidget(cen_widget);
 
@@ -1246,7 +1294,7 @@ public:
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 1036, 22));
+        menubar->setGeometry(QRect(0, 0, 1036, 21));
         menubar->setStyleSheet(QString::fromUtf8("#menubar{\n"
 "	background-color: rgb(187, 210, 243);\n"
 "    spacing: 3px; \n"
