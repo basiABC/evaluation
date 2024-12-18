@@ -884,7 +884,7 @@ public:
         horizontalLayout_5->setContentsMargins(11, 0, 11, 0);
         horizontalLayout_7 = new QHBoxLayout();
         horizontalLayout_7->setObjectName("horizontalLayout_7");
-        horizontalLayout_7->setContentsMargins(-1, 8, -1, 11);
+        horizontalLayout_7->setContentsMargins(-1, 0, -1, 0);
         c_load_pushButton = new QPushButton(cen_header);
         c_load_pushButton->setObjectName("c_load_pushButton");
         c_load_pushButton->setMinimumSize(QSize(0, 25));
@@ -904,8 +904,11 @@ public:
 
         c_gui_pushButton = new QPushButton(cen_header);
         c_gui_pushButton->setObjectName("c_gui_pushButton");
-        sizePolicy4.setHeightForWidth(c_gui_pushButton->sizePolicy().hasHeightForWidth());
-        c_gui_pushButton->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy7(QSizePolicy::Policy::Minimum, QSizePolicy::Policy::Fixed);
+        sizePolicy7.setHorizontalStretch(0);
+        sizePolicy7.setVerticalStretch(0);
+        sizePolicy7.setHeightForWidth(c_gui_pushButton->sizePolicy().hasHeightForWidth());
+        c_gui_pushButton->setSizePolicy(sizePolicy7);
         c_gui_pushButton->setMinimumSize(QSize(0, 25));
         c_gui_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
 "    background-color: rgb(85, 127, 204); /* \346\214\211\351\222\256\350\203\214\346\231\257\350\211\262 */\n"
@@ -962,8 +965,11 @@ public:
 
         c_save_pushButton = new QPushButton(cen_header);
         c_save_pushButton->setObjectName("c_save_pushButton");
-        sizePolicy5.setHeightForWidth(c_save_pushButton->sizePolicy().hasHeightForWidth());
-        c_save_pushButton->setSizePolicy(sizePolicy5);
+        QSizePolicy sizePolicy8(QSizePolicy::Policy::Fixed, QSizePolicy::Policy::Fixed);
+        sizePolicy8.setHorizontalStretch(0);
+        sizePolicy8.setVerticalStretch(0);
+        sizePolicy8.setHeightForWidth(c_save_pushButton->sizePolicy().hasHeightForWidth());
+        c_save_pushButton->setSizePolicy(sizePolicy8);
         c_save_pushButton->setMinimumSize(QSize(80, 25));
         c_save_pushButton->setMaximumSize(QSize(80, 16777215));
         c_save_pushButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
@@ -1007,8 +1013,8 @@ public:
 
         cen_weight_display_st = new QStackedWidget(cen_widget);
         cen_weight_display_st->setObjectName("cen_weight_display_st");
-        sizePolicy.setHeightForWidth(cen_weight_display_st->sizePolicy().hasHeightForWidth());
-        cen_weight_display_st->setSizePolicy(sizePolicy);
+        sizePolicy2.setHeightForWidth(cen_weight_display_st->sizePolicy().hasHeightForWidth());
+        cen_weight_display_st->setSizePolicy(sizePolicy2);
         cen_weight_display_st->setStyleSheet(QString::fromUtf8(""));
         page = new QWidget();
         page->setObjectName("page");
@@ -1323,11 +1329,11 @@ public:
         MainWindow->setStatusBar(statusbar);
         toolBar = new QToolBar(MainWindow);
         toolBar->setObjectName("toolBar");
-        QSizePolicy sizePolicy7(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
-        sizePolicy7.setHorizontalStretch(0);
-        sizePolicy7.setVerticalStretch(0);
-        sizePolicy7.setHeightForWidth(toolBar->sizePolicy().hasHeightForWidth());
-        toolBar->setSizePolicy(sizePolicy7);
+        QSizePolicy sizePolicy9(QSizePolicy::Policy::Preferred, QSizePolicy::Policy::Fixed);
+        sizePolicy9.setHorizontalStretch(0);
+        sizePolicy9.setVerticalStretch(0);
+        sizePolicy9.setHeightForWidth(toolBar->sizePolicy().hasHeightForWidth());
+        toolBar->setSizePolicy(sizePolicy9);
         toolBar->setStyleSheet(QString::fromUtf8("#toolBar{\n"
 "\n"
 "background-color: rgb(187, 210, 243);\n"
@@ -1367,7 +1373,7 @@ public:
         retranslateUi(MainWindow);
 
         stackedWidget->setCurrentIndex(1);
-        weight_stack->setCurrentIndex(0);
+        weight_stack->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

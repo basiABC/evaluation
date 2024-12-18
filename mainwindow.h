@@ -1,3 +1,4 @@
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
@@ -105,6 +106,8 @@ private slots:
 
     void on_generate_weight_pushButton_clicked();
 
+    void on_c_load_pushButton_clicked();
+
 private:
     QGraphicsScene *scene;
     Node *root;
@@ -123,7 +126,6 @@ private:
     void clearAllLines();
     void connectLinesRecursively(Node* parentNode);
     void connectAllLines();
-
 };
 #endif // MAINWINDOW_H
 

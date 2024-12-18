@@ -15,6 +15,7 @@
 #include <QBrush>
 #include <QColor>
 #include <iostream>
+#include <QMap>
 #include "xlsxdocument.h"
 #include "xlsxformat.h"
 
@@ -56,14 +57,7 @@ void MainWindow::iniUI(){
     comboFont= new QFontComboBox;
     comboFont->setMinimumWidth(150);
     ui->toolBar->addWidget(comboFont);
-    QVBoxLayout *layout = new QVBoxLayout(ui->side_z_c);
 
-    for (int i = 0; i < 5; ++i) {
-        VerticalButton *button = new VerticalButton(QString("Button %1").arg(i + 1), ui->side_z_c);
-        layout->addWidget(button);
-    }
-
-    ui->side_z_c->setLayout(layout);
 }
 
 void MainWindow::onTreeWidgetItemClicked(QTreeWidgetItem *item, int column)
@@ -322,10 +316,82 @@ void writeNodeToExcel(QXlsx::Document &xlsx, const Node *node,QXlsx::Format form
     return;
 }
 
+//计算前面有多少张表
+int calBrotherChildNum(const Node* node){
+    Node* parent = node->parent;
+    int child_num =0;
+    if(!parent->parent)
+    {
+        for(const Node* brother:parent->children){
+            if(brother == node) break;
+            else{
+                child_num++;
+                child_num+=brother->children.size();
+                child_num++;
+            }
+        }
+    }
+    else{
+        for(const Node* parent:parent->parent->children){
+            for(const Node* brother:parent->children)
+            {
+                if(brother == node) return child_num;
+                else{
+                    child_num++;
+                    child_num+=brother->children.size();
+                    child_num++;
+                }
+            }
+        }
+    }
+    return child_num;
+}
+
+//计算上一层节点，最大子节点数目
+int calMaxChildNum(const Node* node){
+    int max = 0;
+    if(node->parent){
+        for(const Node* child:node->parent->children){
+            if(child->children.size()>=max){
+                max = child->children.size();
+            }
+        }
+        return max;
+    }
+    else{
+        return node->children.size();
+    }
+
+}
+
+//生成层次分析法模板函数
+void generateAnaliticTable(QXlsx::Document &xlsx,Node* node,int row,int col,QXlsx::Format title_format){
+    if(node->children.empty()) return;
+    int c_row = row;
+    int c_col = col;
+    xlsx.write(row,col,node->name,title_format);
+    node->cen_xlsx_x = row;
+    node->cen_xlsx_y = col;   //记录在层次分析模板中的位置
+    node->row=row;
+    node->col=col;
+    c_row++;
+    c_col++;
+    int max_child_num = calMaxChildNum(node);
+    qInfo()<<node->name;
+    qInfo()<<row<<col;
+    for(Node* child:node->children){
+        xlsx.write(row,c_col++,child->name,title_format);
+        xlsx.write(c_row++,col,child->name,title_format);
+        int width = calBrotherChildNum(child);
+        generateAnaliticTable(xlsx,child,row+max_child_num+2,width+1,title_format);
+    }
+    return;
+}
 
 void MainWindow::on_generate_weight_pushButton_clicked()
 {
-    QXlsx::Document xlsx;
+    QXlsx::Document zhuan_xlsx;
+    QXlsx::Document cen_xlsx;
 
     // 设置标题格式
     QXlsx::Format titleFormat;
@@ -341,14 +407,81 @@ void MainWindow::on_generate_weight_pushButton_clicked()
     cellFormat.setBorderStyle(QXlsx::Format::BorderThin);
 
     // 创建树并写入数据
-    writeNodeToExcel(xlsx, root,titleFormat);
+    writeNodeToExcel(zhuan_xlsx, root,titleFormat);
+    generateAnaliticTable(cen_xlsx,root,1,1,titleFormat);
 
-    xlsx.setColumnWidth(1, 20);
-    xlsx.setColumnWidth(2, 20);
-    xlsx.setColumnWidth(3, 20);
-    xlsx.setColumnWidth(4, 10);
+    zhuan_xlsx.setColumnWidth(1, 20);
+    zhuan_xlsx.setColumnWidth(2, 20);
+    zhuan_xlsx.setColumnWidth(3, 20);
+    zhuan_xlsx.setColumnWidth(4, 10);
 
-    xlsx.saveAs("D:\\MyCode\\Qt\\evaluation_sys\\evaluation\\weight.xlsx");
+    zhuan_xlsx.saveAs("D:\\MyCode\\Qt\\evaluation_sys\\evaluation\\zhuan_weight.xlsx");
+    cen_xlsx.saveAs("D:\\MyCode\\Qt\\evaluation_sys\\evaluation\\cen_weight.xlsx");
     QMessageBox::information(this,tr("提示"),tr("模板生成成功！"));
 }
+
+void readAnaliticData(QXlsx::Document *xlsx,Node* node,QWidget* page){
+    if(node->children.empty()) return;
+    //读入对应节点的层次分析数据
+    int x;
+    int y;
+    x= node->cen_xlsx_x+1;
+    y=node->cen_xlsx_y+1;
+    //想像数组一样使用它，就需要初始化，不然可以用push_back
+    QVector<QVector<double>> matrix(100,QVector<double> (100,0.0));
+    for(int i=0;i<node->children.count();i++){
+        y=node->cen_xlsx_y+1;
+        for(int j=0;j<node->children.count();j++){
+            matrix[i][j]=xlsx->read(x,y).toDouble();
+            qInfo() <<node->name<<matrix[i][j];
+            y++;
+        }
+        qInfo()<<Qt::endl;
+        x++;
+    }
+    node->cen_weight.insert(page,matrix);
+    for(Node* child:node->children){
+        readAnaliticData(xlsx,child,page);
+    }
+}
+
+void MainWindow::on_c_load_pushButton_clicked()
+{
+    bool ok;
+    int expertCount = QInputDialog::getInt(this, "输入专家数量", "请输入需要几位专家：", 1, 1, 10, 1, &ok);
+    if (!ok) return;
+
+    QVector<VerticalButton *> vb;
+    QVBoxLayout *layout = new QVBoxLayout(ui->side_z_c);
+
+    for (int i = 0; i < expertCount; ++i) {
+        QString expertName = QInputDialog::getText(this, tr("输入专家姓名"), tr("专家 %1 姓名：").arg(i + 1), QLineEdit::Normal, "", &ok);
+        if (!ok || expertName.isEmpty()) {
+            QMessageBox::warning(this, "警告", "专家姓名不能为空。");
+            return;
+        }
+
+        QString defaultPath = "D:\\MyCode\\Qt\\evaluation_sys\\evaluation";
+        QString filePath = QFileDialog::getOpenFileName(this, tr("导入专家评分文件"), defaultPath, tr("所有文件 (*.*);;文本文件 (*.txt);;Excel 文件 (*.xlsx)"));
+        if (filePath.isEmpty()) {
+            QMessageBox::warning(this, "警告", "未选择文件。");
+            return;
+        }
+
+        //为每一个设置以一个page
+        QWidget *page = new QWidget(ui->cen_weight_display_st);
+        ui->cen_weight_display_st->addWidget(page);
+        VerticalButton *cen_b = new VerticalButton(expertName,ui->side_z_c,ui->cen_weight_display_st,page);
+        layout->addWidget(cen_b);
+        //读入层次分析数据
+        //将每个专家的表格存入对应数据结构
+        QXlsx::Document* xlsx= new QXlsx::Document(filePath);
+        readAnaliticData(xlsx,root,page);
+    }
+    //为什么没有显示按钮
+    ui->side_z_c->setLayout(layout);
+    ui->side_z_c->show();
+    QMessageBox::information(this, "导入成功", tr("已成功导入 %1 位专家的评分文件。").arg(expertCount));
+}
+
 
